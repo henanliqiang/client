@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>预约门店救援</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/rescueshop.css">
+</head>
+
+<body id="addrescue-frm">
+    <div class="aui-content">
+        <ul class="aui-list aui-media-list aui-list-noborder">
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width: 4rem;">
+                        <img :src="selectShop_data.photo?selectShop_data.photo:'images/gril.jpg'" class="aui-img-round">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title aui-font-size-14">
+                                <span v-text="selectShop_data.name">小李快修 电动车服务店</span>
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            天牛网授权店 {{selectShop_data.no}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title aui-font-size-14" v-text="alladdress">
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text price">
+                            距离 {{shopdistance}} 公里
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="aui-card-list aui-card-list-custom aui-margin-t-10">
+            <div class="aui-card-list-content-padded aui-border-b">
+                <div class="aui-row aui-row-padded">
+                    <div class="aui-pull-left aui-font-size-16">
+                        救援交通费：
+                    </div>
+                    <div class="aui-pull-right">
+                        <p class="price">
+                           <span class="price" v-text="(selectShop_data.rescuePrice*shopdistance) | currency '¥ ' '1'">￥8.5</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="aui-card-list aui-card-list-custom aui-margin-t-10">
+            <div class="aui-card-list-content-padded aui-border-b">
+                <div class="aui-row aui-row-padded">
+                    <div class="aui-pull-left aui-font-size-16">
+                        联系电话：
+                    </div>
+                    <div class="aui-pull-right">
+                           <input type="text" v-model="cellphone" style="line-height:22px;height:22px;text-align:right;" placeholder="点击输入您的电话">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 支付 -->
+        <ul class="aui-list aui-list-noborder">
+            <li class="aui-list-item aui-margin-t-15">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">选择支付方式</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('0')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">支付宝</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="0" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('1')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">微信</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="1" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('2')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/qb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">钱包支付</span> （余额 ￥ {{getOrderSet.wallet}}）
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="2" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item aui-text-left aui-padded-15" tapmode style="width: auto;">
+            <p>救援交通费：
+                <span class="price" v-text="(selectShop_data.rescuePrice*shopdistance) | currency '¥ ' '1'">￥8.5</span>
+            </p>
+        </div>
+        <div class="aui-bar-tab-item " tapmode style="width: 6rem; background: #7ec32f; color:#fff;" onclick="saveBtn()">提交救援单</div>
+    </footer>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/addrescue.js"></script>
+
+</html>

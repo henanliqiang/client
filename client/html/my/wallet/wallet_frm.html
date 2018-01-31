@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>钱包</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/wallet.css">
+</head>
+
+<body id="wallet-frm" v-cloak>
+    <div class="bg">
+        <div style="height:4.2rem;">
+            <h3 class="aui-text-center aui-text-white aui-padded-t-15">钱包余额</h3>
+            <h2 class="aui-text-center aui-text-white">
+            <span class="corange" v-text="balancewallet.wallet | currency '¥ ' '2' ">￥0.00</span>
+            </h2>
+        </div>
+        <ul class="aui-row" style="text-align:center;color:#fff;">
+            <li class="aui-col-xs-6" onclick="jumpUrl.withdrawcash()">
+                <img src="images/wdtx_03.png" style="margin: 0 auto; width: 1.2rem;">
+                <div class="aui-margin-t-10 aui-text-white">我要提现</div>
+            </li>
+            <li class="aui-col-xs-6" onclick="jumpUrl.cashregister()">
+                <img src="images/txjl_03.png" style="margin: 0 auto; width: 1.2rem;">
+                <div class="aui-margin-t-10 aui-text-white">提现记录</div>
+            </li>
+        </ul>
+    </div>
+    <div class="aui-padded-15">收入明细</div>
+    <div class="aui-content">
+        <div class="aui-timeline">
+            <!-- 记录 -->
+            <div class="aui-timeline-item" v-for="item in BatteryOrder_data.batteryOrderList">
+                <div class="aui-timeline-item-label-icon">
+                    <img src="images/dian_07.png" style="width: 2rem;">
+                </div>
+                <div class="aui-timeline-item-inner">
+
+                    <div class="aui-card-list">
+                        <div class="aui-card-list-content-padded">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-text clearfix">
+                                    <div class="aui-list-item-title fl">
+                                        <span v-if="item.category==0">租金退款：</span>
+                                        <span v-if="item.category==1">换电预约取消：</span>
+                                        <span v-if="item.category==2">押金赎回：</span>
+                                        <span v-if="item.category==3">店铺推荐好友：</span>
+                                        <span v-if="item.category==4">店铺完成安装预约：</span>
+                                        <span v-if="item.category==5">店铺完成换电预约：</span>
+                                        <span v-if="item.category==6">店铺完成退电预约：</span>
+                                        <span v-if="item.category==7">店铺排名奖励：</span>
+                                        <span v-if="item.category==8">充值：</span>
+                                        <span v-if="item.category==9">店铺减配电池：</span>
+                                        <span v-if="item.category==10">预约过期：</span>
+                                        <span v-if="item.category==11">增配订单取消：</span>
+                                        <span v-if="item.category==12">救援交通费分润：</span>
+                                        <span v-if="item.category==50">订单付款：</span>
+                                        <span v-if="item.category==51">租金支付：</span>
+                                        <span v-if="item.category==52">换电费支付：</span>
+                                        <span v-if="item.category==53">押金支付：</span>
+                                        <span v-if="item.category==54">配货订单支付：</span>
+                                        <span v-if="item.category==55">提现：</span>
+                                        <span v-if="item.category==56">退租违约金支付：</span>
+                                        <span v-if="item.category==57">扣款：</span>
+                                        <span v-if="item.category==58">救援交通费支付：</span>
+                                        <span v-if="item.category==59">充值天牛币支付</span>
+                                        <span v-text="item.remark">TN25414412</span>
+                                    </div>
+                                    <div class="aui-list-item-right fr">
+                                        <span v-if="item.type==0">充值 </span>
+                                        <span v-if="item.type==1">消费 </span>
+                                        <span class="price">￥<span v-text="item.amount"> 1.5</span></span>
+                                    </div>
+                                </div>
+                                <div class="aui-font-size-12 grey">
+                                    <span v-text="item.addtime">2017-08-21 12:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-margin-10" style="height:30px;line-height: 30px;text-align: center;">
+                <span v-text="moredatatxt">暂无更多记录</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/wallet.js"></script>

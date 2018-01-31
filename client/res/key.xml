@@ -1,0 +1,15 @@
+<!-- <?xml version="1.0" encoding="UTF-8" ?>
+<security>
+  <item name="wxPay_appId" value="wxdde7835e5a03853e"/>
+  <item name="wxPay_mchId" value="1493365812"/>
+  <item name="wxPay_partnerKey" value="cfa0c03b2197a5176dd40a9fc158523c"/>
+  <item name="wxPay_notifyUrl" value="http://120.26.161.225:8080/battery/n/wxpay/wxpayNotify"/>
+</security>
+<security>
+<item name="aliPay_partner" value="2088411441452114"/>
+<item name="aliPay_seller" value="2088411441452114"/>
+<item name="aliPay_rsaPriKey" value="IICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALtyo6Z6TLODt1iUlmSKoLMpJLyCIfGqRs520OlaU0dRs1HgnN2o33xtWHGs0PrwvYxKUsfG56C8saaSWwBohgXpuT8c1Ok05oa79uTTRkDHgrhXeuRTBx+ZXyysVWn674y6LgVV9yL/jTi0up6M1Wu5j2ciUxAUA/btbzwYTnz/AgMBAAECgYEAoy6YswwTC9Al4/JuvpZEcdPmjEkJfdXLkF+1XQBqMVM5tZTBWuJxtGOItGVLBLpheOkXCZ3p9W9vhGAy4rcbvDmimluuprsx7aSjPHU8ndxvZNXwv8cKL5dHqAirMsVgvf9IabAmRYzDgTM9M6H50dEve/2Kt9li7MNHFaQnfxkCQQDrlcsvW9uYlTwE+TwVMfnXCFLOR6fBY0n4OF+UqTpmKIWXdh1iUycuhhAwpjTiXQiZT7EeSOxH7N/OEghKNSHtAkEAy7D4WlMGBOq1omMHwPfyBYe9avx1uv9ReFvPT+Ybd7QZi7/iWW8goxtwnp1IMRECx6aNtDYyTIYyuLNvWgptGwJBAM35xhC+K52YvUVL9HBDpcGQkXWxyMaY3Q+dmlQMMfcn7sWii8ZwFY3jwTwH1a0k0mPY/W8RKyUnwfYWZhEbq3ECQH1fNd3SkDfih12l+pXJhwvkWrBJJ+WrVOfyCo4xIeLx1W9w8c7+WWZLc2wNfuvEfqOIXlv3p8n2J64Ls5QGKtUCQHjmzjk2dlua2a00OMikuYNt+JITa6BfDUlZQZ6i7ixE+4xfp79LCReN8x1OeAI8w6VfkzAMh2Z7t+G48txIUvo="/>
+<item name="aliPay_rsaPubKey" value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC7cqOmekyzg7dYlJZkiqCzKSS8giHxqkbOdtDpWlNHUbNR4JzdqN98bVhxrND68L2MSlLHxuegvLGmklsAaIYF6bk/HNTpNOaGu/bk00ZAx4K4V3rkUwcfmV8srFVp+u+Mui4FVfci/404tLqejNVruY9nIlMQFAP27W88GE58/wIDAQAB"/>
+<item name="aliPay_notifyURL" value="http://test120.weidinghuo.com/i/n/paymentManage/notifyMobileAli"/>
+</security>
+ -->

@@ -1,0 +1,16 @@
+.aui-list{
+    background-image: none;
+}
+.aui-list .aui-list-item-media{
+    padding:1rem 0;
+}
+.aui-list.aui-list-in .aui-list-item {
+    background-image: none;
+}
+.my-bj{
+    background: url("../images/my-bj_02.png") no-repeat ;
+    width:100%;
+    height:7.5rem;
+    background-size:100% 100%;
+    position: relative;
+}

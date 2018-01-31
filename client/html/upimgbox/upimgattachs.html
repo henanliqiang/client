@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>图片上传</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <style>
+    .aui-nav {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .aui-nav div {
+        height: 55px;
+    }
+
+    .aui-nav .buy {
+        line-height: 55px;
+        background: #FDAF33;
+        color: #fff;
+    }
+
+    .aui-nav .aui-iconfont {
+        font-size: 20px;
+    }
+
+    #main {
+        background: #e74c3c
+    }
+
+    .cannot_buy {
+        background: #eee !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="order-list" style="margin-bottom: 100px;">
+        <header class="aui-bar aui-bar-nav aui-bar-custom">
+            <a class="aui-pull-left aui-btn" tapmode onclick="closeWin()">
+                <span class="aui-iconfont aui-icon-left"></span>返回
+            </a>
+            <div class="aui-title">上传图片附件</div>
+            <!-- <a class="aui-pull-right aui-btn aui-font-size-14" @click="saveattach()" v-if="uploadstatus">
+                保存
+            </a>
+            <a class="aui-pull-right aui-btn aui-font-size-14" v-else>
+                上传中...
+            </a> -->
+        </header>
+        <div class="aui-title aui-content-padded aui-font-size-12" style="color: #666;">
+            支持JPG、PNG
+            <span class="aui-hide">DOC、EXL、TXT</span>等格式文件；您最多添加
+            <span v-if="attachTypesImgs=='attach-1'"> 1 </span>
+            <span v-if="attachTypesImgs=='attach-4'"> 4 </span> 张图片。
+        </div>
+        <div class="aui-content-padded" v-for="item in attachlist | limitBy 5">
+            <ul class="aui-list aui-media-list">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-media-list-item-inner aui-pull-left" style="width:50%;overflow:hidden;" @click="looksimgBtn(item.url)">
+                        <div class="aui-list-item-media wechat-avatar" style="width: 3rem;height: 3rem;">
+                            <img :src="item.url" style="width: 2rem;height: 2rem;margin-top:-6.5px;border-radius:50%;" />
+                        </div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-text">
+                                <div class="aui-list-item-title aui-font-size-12">
+                                    <span class="aui-ellipsis-1" style="" v-text="item.filename"></span>（
+                                    <span v-text="item.filesize"></span> M）
+                                </div>
+                                <!-- <span class="aui-list-item-right aui-text-info">查看</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-media-list-item-inner aui-pull-right" @click.stop="delimg($index,item)">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-text">
+                                <div class="aui-list-item-title aui-font-size-12">
+                                    <span class="aui-font-size-12 aui-margin-l-10 aui-text-info" style="border-left:1px dashed #ccc;padding-left: 10px;">删除</span>
+                                </div>
+                                <!-- <span class="aui-list-item-right aui-text-info">查看</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="margin-top:2rem;" v-if="attachlist.length>0">
+            <div class="aui-content-padded">
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="saveattach()" v-if="uploadstatus">
+                    <span class="aui-pull-left">•</span> 保存上传
+                    <span class="aui-pull-right">•</span>
+                </div>
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" v-else>
+                    <span class="aui-pull-left">•</span> 上传中...
+                    <span class="aui-pull-right">•</span>
+                </div>
+            </div>
+        </div>
+        <footer class="aui-bar aui-bar-tab aui-padded-10 aui-bar-tab-custom" id="footer">
+            <div class="aui-col-xs-6">
+                <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-warning aui-pull-left" style="width: 98%;" @click="photograph();">
+                    <i class="aui-iconfont aui-icon-camera"></i> 拍照
+                </div>
+            </div>
+            <div class="aui-col-xs-6">
+                <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-info aui-pull-right" style="width: 98%;" id="main" @click="image_filter()">
+                    从图片选择
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/upimgattach.js"></script>
+
+</html>

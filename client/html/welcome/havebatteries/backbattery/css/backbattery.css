@@ -1,0 +1,13 @@
+.hidden{
+    display: none;
+}
+.btn-grey{
+    border-radius:0.925rem;
+    color:#444;
+}
+.btn-grey.aui-active, .btn-grey:active {
+    color: #ffffff;
+}
+.btn-span{
+    color:#fff;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/details.css">
+</head>
+
+<body>
+<div class="aui-content" style="margin-bottom: 2.25rem;">
+    <div>
+        <img src="images/item_02.png" style="width:100%;">
+    </div>
+    <div class="aui-padded-l-15 aui-padded-r-15 aui-padded-b-15">
+        <div class=" aui-padded-t-15 aui-margin-b-5">绿能 B1233 家用电动车</div>
+        <p class=" price aui-font-size-18">￥1650.00</p>
+        <p class="">已售97</p>
+    </div>
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-list-item-inner">
+                    选择颜色
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-padded-t-5 clearfix">
+                    <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border active">红色</div>
+                    <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border">红色</div>
+                    <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border">红色</div>
+                    <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border">红色</div>
+                    <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border">红色</div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-list-item-inner">
+                    购买数量
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-left">
+                        <div class="aui-bar aui-bar-btn aui-bar-btn-sm" style="width:60%;float:left;">
+                            <div class="aui-bar-btn-item">
+                                <i class="aui-iconfont aui-icon-minus"></i>
+                            </div>
+                            <div class="aui-bar-btn-item">
+                                <input type="number" class="aui-input aui-text-center" value="1">
+                            </div>
+                            <div class="aui-bar-btn-item">
+                                <i class="aui-iconfont aui-icon-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<footer class="aui-bar aui-bar-tab">
+    <div class="aui-bar-tab-item" tapmode style="width: 3rem;">
+        <i class="aui-iconfont aui-icon-star"></i>
+        <div class="aui-bar-tab-label">收藏</div>
+    </div>
+    <div class="aui-bar-tab-item" tapmode style="width: 3rem;">
+        <i class="aui-iconfont aui-icon-comment"></i>
+        <div class="aui-bar-tab-label">分享</div>
+    </div>
+    <div class="aui-bar-tab-item aui-text-white" tapmode style="width: auto; background: #ff7010;">加入购物车</div>
+    <div class="aui-bar-tab-item " tapmode style="width: auto; background: #ff9966; color:#ff3300;">立即购买</div>
+</footer>
+</body>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+
+<script type="text/javascript">
+    apiready = function() {
+        // 实现沉浸式效果
+        $api.fixStatusBar($api.dom("header"));
+    }
+</script>
+</html>

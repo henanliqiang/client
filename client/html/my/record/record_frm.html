@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>预约服务记录</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/record.css">
+</head>
+
+<body id="record-frm" v-cloak>
+    <div class="aui-content">
+        <div class="aui-tab" id="tab">
+            <div class="aui-tab-item aui-active">换电订单</div>
+            <div class="aui-tab-item">安装订单</div>
+            <div class="aui-tab-item">退租订单</div>
+        </div>
+    </div>
+    <div class="aui-content" style="padding-bottom:3rem;">
+        <ul class="aui-list aui-margin-t-15" v-if="BatteryOrder_data.batteryOrderList.length<1">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="" style="line-height: 1rem;text-align: center;">
+                        暂无记录
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-margin-t-15" v-else v-for="item in BatteryOrder_data.batteryOrderList" @click="jumpAppointinfo(item.id)">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title" style="line-height: 1rem;">
+                        订单编号：<span v-text="item.no">TN25413314</span>
+                    </div>
+                    <div class="aui-list-item-right"><span v-text="item.addtime">2017-08-21 12:00</span></div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">
+                        <div class="aui-margin-10 grey">
+                            <!-- <span><img src="images/az_03.png" style="width: 1rem;" class="fl aui-margin-r-5"></span> -->
+                            <!-- <span v-text="item.batteryname">6020锂电</span> * <span v-text="item.groupnum">5</span> 组 -->
+                            <div class="aui-font-size-14 price">
+                                <span v-if="item.state==0">预约中</span>
+                                <span v-if="item.state==1">处理成功</span>
+                                <span v-if="item.state==2">已过期 </span>
+                                <span v-if="item.state==3">已取消</span>
+                                <span v-if="item.state==4">型号不符</span>
+                                <span v-if="item.state==5">电池报损处理中</span>
+                                <span v-if="item.state==6">电池已损坏，不与更换 </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aui-list-item-right price">
+                        <span v-if="item.state==0" v-text="item.afterMinTimes"></span>
+                        <span v-else>详情 <span class="aui-btn aui-btn-danger" v-if="item.state==1 &&item.isevaluate==0">服务评分</span></span>
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="aui-margin-10" style="height:30px;line-height: 30px;text-align: center;">
+            <span v-text="moredatatxt">暂无记录</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../../assets/js/aui-slide.js"></script>
+<script type="text/javascript" src="../../assets/js/aui-tab.js"></script>
+<script type="text/javascript" src="js/appointservicelist.js"></script>
+
+</html>

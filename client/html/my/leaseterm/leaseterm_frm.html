@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>租期</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/leaseterm.css">
+</head>
+
+<body id="leaseterm-frm">
+    <div class="aui-content">
+        <ul class="aui-list">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title" style="line-height: 1rem;">
+                        租期状态
+                    </div>
+                    <div class="aui-list-item-right" v-if="leaseTerm_data.isoverdue==0">
+                        <span v-if="leaseTerm_data.leaseType==0">未租</span>
+                        <span v-if="leaseTerm_data.leaseType==1">已租</span>
+                    </div>
+                    <div class="aui-list-item-right" v-if="leaseTerm_data.isoverdue==1">
+                        <span>逾期</span>
+                    </div>
+                    <!-- <div class="aui-list-item-right" v-else>
+                        <span>无</span>
+                    </div> -->
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">
+                        当前租期
+                    </div>
+                    <div class="aui-list-item-right">
+                        <span v-if="leaseTerm_data.leaseType==0">无</span>
+                        <span v-if="leaseTerm_data.leaseType==1">至<span v-text="leaseTerm_data.duedate"></span>
+                        </span>
+                        <span v-if="leaseTerm_data.isoverdue==1" style="background:#BB4D53;padding:3px;color:#fff;">已逾期</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="margin-top:2rem;">
+        <div class="aui-content-padded">
+            <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" v-on:click="insertRenewBtn()" v-if="leaseTerm_data.leaseType==1">
+                <span class="aui-pull-left">•</span>续租<span class="aui-pull-right">•</span>
+            </div>
+            <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm aui-btn-disable" v-else>
+                <span class="aui-pull-left">•</span>续租<span class="aui-pull-right">•</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/leaseterm.js"></script>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode>
+        </a>
+        <div class="aui-title">登录</div>
+    </header>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script>
+// 加载主题页面
+apiready = function() {
+    apps.loadWinUrl('login_frm', 'login/login_frm.html');
+    // 后退键 - 安卓
+    var keyBackCount = 0;
+    // m.keyback = function() {
+    if (api.systemType == 'android') {
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+            if (!keyBackCount) {
+                api.toast({
+                    msg: "连按两次退出",
+                    location: 'middle'
+                });
+                keyBackCount++;
+                setTimeout(function() {
+                    keyBackCount = 0;
+                }, 2000);
+            } else {
+                api.closeWidget({
+                    id: api.appId,
+                    silent: true,
+                    animation: {
+                        type: 'none'
+                    }
+                });
+            }
+        });
+    }
+    // iOS手势关闭页面时
+    api.addEventListener({
+        name: 'viewdisappear'
+    }, function(ret, err) {
+        // 你的代码
+
+    });
+
+}
+</script>

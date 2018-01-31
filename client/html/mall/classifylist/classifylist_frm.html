@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>商品列表</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/classifylist.css">
+</head>
+
+<body id="appgoodlist-frm">
+    <div class="aui-content" style="margin-bottom:2.25rem;">
+        <!-- <div class="aui-tab" id="tab">
+            <div class="aui-tab-item aui-active">综合</div>
+            <div class="aui-tab-item">销量</div>
+            <div class="aui-tab-item" style="position:relative;">价格
+                <div class="up {{sort=='asc' ? 'arrow-active' : 'arrow-noactive'}}">▲</div>
+                <div class="down {{sort=='desc' ? 'arrow-active' : 'arrow-noactive'}}">▼</div>
+            </div>
+        </div> -->
+        <div class="aui-content aui-margin-t-15">
+        <div class="" style="line-height: 1rem;text-align: center;" v-if="goodslist_data.goodsList.length<1">
+                暂无商品
+            </div>
+            <div class="aui-pull-left aui-margin-b-15 block-item"  v-for="goodsitem in goodslist_data.goodsList" v-on:click="goods_detailbtn(goodsitem)">
+                <div style="height:8.5rem;overflow:hidden;">
+                    <img :src="goodsitem.imgurl?goodsitem.imgurl:'../../assets/image/load-img.png'">
+                </div>
+                <div class="aui-grid-label aui-padded-10">
+                    <div class="aui-ellipsis-2" v-text="goodsitem.name" style="height:23px;">电动车头盔</div>
+                    <div class="aui-margin-t-5 clearfix">
+                        <div class="aui-pull-left" style="width:70%;">
+                            <p class="price aui-font-size-16" v-text="goodsitem.price | currency '¥ ' '2'">￥1500</p>
+                            <p>已售 <span v-text="goodsitem.goodscount"></span></p>
+                        </div>
+                        <div class="aui-pull-right">
+                            <img src="images/shoppingcar_03.png" style="width:1.5rem;margin-top:0.3rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../assets/js/aui-slide.js"></script>
+<script type="text/javascript" src="../../assets/js/aui-tab.js"></script>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/goods_list.js"></script>
+</html>

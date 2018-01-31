@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的电池</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/open.css">
+</head>
+
+<body id="open-frm" v-cloak>
+    <div class="aui-content" style="padding-bottom:3rem;">
+        <h4 class="aui-text-center aui-padded-15">选择合适电池</h4>
+        <div class="clearfix">
+            <div class="fl aui-margin-b-10 item-block" :class="{'item-block-active':(item.id==batterySelId)}" v-for="item in batteryselect.batteryList" @click="chooseBattery($index)">
+                <img src="images/dc_03.png" style="width: 90%; margin: 0 auto;" v-if="item.id==batterySelId">
+                <img src="images/dc_02.png" style="width: 90%; margin: 0 auto;" v-else>
+                <p class="aui-text-center aui-margin-b-10"><span v-text="item.name">6020锂电</span> <span v-text="item.groupnum">1</span> 组</p>
+            </div>
+        </div>
+        <ul class="aui-list aui-list-noborder">
+            <li class="aui-padded-l-15 aui-font-size-14 grey aui-margin-b-10">
+                <span>·</span>
+                <span v-text="batteryInfo_txt">最大行程50-60公里(受电机和控制器影响)</span>
+            </li>
+            <!-- <li class="aui-padded-l-15 aui-font-size-14 grey aui-margin-b-10">
+                ·适用**********等标准车型安装
+            </li> -->
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">押金 (可退)</div>
+                    <div class="aui-list-item-right price">
+                        <span class="corange" v-text="deposit | currency '¥ ' '2' ">￥0.00</span>
+                        <span>(市场零售价</span>
+                        <span class="corange" v-text="marketprice | currency '¥ ' '2' ">￥1800</span>
+                        <span>)</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-t-15">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">选择支付方式</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('0')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">支付宝</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="0" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('1')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">微信</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="1" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('2')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/qb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">钱包支付</span> （余额 ￥ {{batteryselect.wallet?batteryselect.wallet:'0.00'}}）
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="2" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item aui-padded-l-15 aui-text-left" tapmode style="width: auto;">
+            押金：  <span class="price" v-text="deposit | currency '¥ ' '2' ">￥0.00</span>
+        </div>
+        <div class="aui-bar-tab-item" tapmode style="width: 8rem; background: #7ec32f; color:#fff;" onclick="saveBtn()">立即开通</div>
+    </footer>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/open.js"></script>

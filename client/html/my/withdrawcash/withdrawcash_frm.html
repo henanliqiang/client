@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>提现</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/withdrawcash.css">
+</head>
+
+<body>
+    <div class="aui-content" id="withdrawcash-frm" style="padding-bottom:3rem;">
+        <div class="aui-list-item-title aui-margin-15">提现金额</div>
+        <div class="aui-grid aui-margin-b-15 aui-margin-t-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">账户余额</div>
+                        <div class="aui-pull-right price"><span class="corange" v-text="balancewallet.wallet | currency '¥ ' '2' ">￥0.00</span></div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">本次提现</div>
+                        <div class="aui-list-item-input" style="width: 50%;padding-right:0;">
+                            <input type="text" placeholder="点击输入" class="aui-pull-left aui-text-right" style="width: 80%;" v-model="amount">
+                            <div class="aui-pull-right" style="line-height: 2.2rem;">元</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="aui-list-item-title aui-margin-l-15">选择提现方式</div>
+        <div class=" aui-grid aui-margin-b-15 aui-margin-t-15">
+            <ul class="aui-list aui-list-in">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">提现到</div>
+                        <div class="aui-list-item-input" style="width: 50%;">
+                            <div class="aui-margin-15">
+                                <label>
+                                    <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                                    <span style="line-height: 1.5rem;">支付宝</span>
+                                    <input class="aui-radio aui-margin-l-15" type="radio" name="paymode" value="0" v-model="paymode">
+                                </label>
+                            </div>
+                            <div class="aui-margin-15">
+                                <label>
+                                    <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                                    <span style="line-height: 1.5rem;">微 信</span>
+                                    <input class="aui-radio" style="margin-left:20px;" type="radio" name="paymode" value="1" v-model="paymode">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">
+                        <span v-if="paymode==0">支付宝账号</span>
+                        <span v-if="paymode==1">微信账号</span>
+                        </div>
+                        <div class="aui-list-item-input" style="width: 50%;padding-right: 0;">
+                            <input type="text" placeholder="点击输入" class="aui-pull-left aui-text-right" v-model="accounts">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="aui-content aui-margin-t-15">
+                <div class="aui-content-padded">
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" onclick="saveBtn()">
+                        <span class="aui-pull-left">•</span>立即提现<span class="aui-pull-right">•</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/withdrawcash.js"></script>
+
+</html>

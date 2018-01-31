@@ -1,0 +1,14 @@
+.aui-list .aui-list-item{
+    background-image: none;
+}
+.border-dotted{
+    border-top: 1px dotted #eee;
+}
+.block-around{
+    width: 2rem;
+    height:2rem;
+    border: 1px solid #ff7010;
+    border-radius: 50%;
+    margin: 0 auto;
+    line-height: 2rem;
+}

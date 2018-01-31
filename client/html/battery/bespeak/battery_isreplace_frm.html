@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../fonts/stylesheet.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/bespeak.css">
+</head>
+
+<body id="bespeak-form">
+    <div class="aui-content" style="padding-bottom:3rem;">
+        <ul class="aui-list aui-list-noborder">
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner aui-list-item-arrow aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">更换门店：</div>
+                    <div class="aui-list-item-right mendian aui-padded-t-5 aui-padded-b-5">
+                        <h4 style="font-weight:bold;">
+                            <span v-text="selectAppointInfo.name">电动车服务店</span> （<span v-text="selectAppointInfo.shopno">Z0038</span>）
+                        </h4>
+                        <p v-text="selectAppointInfo.shopsAddress">郑州市金水区农业南路11号商鼎中心B区临街商铺B1173号</p>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">更换电池型号：</div>
+                    <div class="aui-list-item-right">
+                        <span v-text="selectAppointInfo.batteryname">6020锂电</span>
+                        <span v-text="selectAppointInfo.groupnum">1</span>组
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">预约更换时间：</div>
+                    <div class="aui-list-item-right clearfix aui-padded-t-10 aui-padded-b-10">
+                        <div class="zq-block fl aui-margin-l-5 aui-margin-b-5" :class="{'active':(item.time==timerange)}" v-for="item in selectAppointInfo.bespeakTime" @click="bespeakTimeBtn($index)">
+                            <span v-text="item.time">2</span>
+                            <span v-if="item.time >= 10">分钟</span>
+                            <span v-if="item.time < 10">小时</span>
+                        </div>
+                        <span v-text="item.name">日租</span>
+                        <!-- <div class="zq-block fl aui-margin-l-5 aui-margin-b-5">5小时内</div>
+                        <div class="zq-block active fl aui-margin-l-5 aui-margin-b-5">到店更换</div> -->
+                    </div>
+                </div>
+            </li>
+            <li class="aui-padded-l-15 aui-font-size-14 grey aui-margin-b-10">
+                网点将在预约时间内预留电池供您更换，超时订单无效
+            </li>
+            <li class="aui-list-item" style="background-size: 100% 0px;">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">充电费：</div>
+                    <div class="aui-list-item-right">
+                        <span class="price" v-text="costprice | currency '¥ ' '2' ">￥0.00</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-t-15">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">选择支付方式</div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('0')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">支付宝</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="0" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('1')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">微信</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="1" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('3')">
+                    <div class="aui-list-item-title">
+                        <i class="iconfonts icon-jinbi" style="font-size:1.6rem;color:#f9ca28;line-height: 1.5rem;" class="aui-margin-r-10 aui-margin-t-15"></i> <span style="line-height: 1.5rem;">天牛币支付</span> （余额 {{selectAppointInfo.integral}}）
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="3" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('2')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/qb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">钱包支付</span> （余额 ￥ {{selectAppointInfo.wallet}}）
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="2" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item aui-text-left aui-padded-l-15" tapmode style="width: auto;" v-if="paymode==3">
+            租金（天牛币）：<span class="price" v-text="costprice">0.00</span>
+        </div>
+        <div class="aui-bar-tab-item aui-text-left aui-padded-l-15" tapmode style="width: auto;" v-else>
+            租金：<span class="price" v-text="costprice | currency '¥ ' '2' ">￥0.00</span>
+        </div>
+        <div class="aui-bar-tab-item" tapmode style="width: 6rem;background: #7ec32f; color: #fff;" onclick="saveBtn()">立即预约</div>
+    </footer>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/battery_isreplace.js"></script>
+
+</html>

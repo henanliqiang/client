@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>救援单</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/rescuelist.css">
+</head>
+
+<body id="rescuelist-frm">
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-margin-t-15" v-if="BatteryOrder_data.batteryOrderList.length<1">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="" style="line-height: 1rem;text-align: center;">
+                        暂无记录
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="aui-list aui-media-list">
+            <li class="aui-list-item aui-margin-b-15" v-for="item in BatteryOrder_data.batteryOrderList">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">
+                                <span v-text="item.addtime">2017-08-21 12:00</span>
+                            </div>
+                            <div class="aui-list-item-right">
+                                <span>救援费用：</span>
+                                <span class="price" v-text="item.cost | currency '¥ ' '2'">￥8.5</span>
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text" style="border-top: 1px solid #eee;" @click="settelsBtn(item)">
+                            <div class="aui-list-item-media" style="width: 4rem;">
+                                <img :src="item.photo?item.photo:'images/gril.jpg'" class="aui-img-round">
+                            </div>
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-text">
+                                    <div class="aui-list-item-title aui-font-size-14">
+                                        <span v-text="item.name">小李快修 电动车服务店</span>
+                                        <br>
+                                        <span v-text="item.cellphone">13546489464</span>
+                                        <span style="margin-left:1rem;"><i class="aui-iconfont aui-icon-phone" style="font-size: 1.2rem;"></i></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                （距离： <span v-text="item.distance">1.70</span> KM）
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="aui-margin-10" style="height:30px;line-height: 30px;text-align: center;">
+            <span v-text="moredatatxt">暂无记录</span>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="js/rescuelist.js"></script>

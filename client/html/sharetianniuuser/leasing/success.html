@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>天牛网</title>
+    <link rel="stylesheet" type="text/css" href="css/aui.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/success.css">
+</head>
+<body id="app-success-form">
+<header class="aui-bar aui-bar-nav" id="aui-header">
+    <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+        <!-- <span class="aui-iconfont aui-icon-left"></span> -->
+    </a>
+    <div class="aui-title">天牛网</div>
+</header>
+<div class="aui-content">
+    <div class="img">
+        <img src="images/success_02.png" style="width: 100%;">
+    </div>
+    <h3 class="aui-text-center aui-margin-t-10">您的注册手机号：{{mobilentel}}</h3>
+    <div style="margin-top:2rem;">
+        <div class="aui-content-padded" @click="iosisapp">
+            <p>
+            <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm">
+                <span class="aui-pull-left">•</span>iOS点击下载<span class="aui-pull-right">•</span>
+            </div>
+            </p>
+        </div>
+    </div>
+    <div style="margin-top:1rem;">
+        <div class="aui-content-padded" @click="androisapp">
+            <p>
+            <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm">
+                <span class="aui-pull-left">•</span>Android点击下载<span class="aui-pull-right">•</span>
+            </div>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="js/aes.min.js"></script>
+<script type="text/javascript" src="js/success.js"></script>

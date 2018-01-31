@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>打开二维码大图</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/insatall.css">
+    <style type="text/css">
+    body {
+        /*background: transparent;*/
+        background: rgba(255,255,255,255);
+        padding: 0;
+        margin: 0;
+        padding-top: 30px;
+    }
+
+    .info .info div {
+        height: 100%;
+        width: 92%;
+        border-radius: 6px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 999;
+        background: none;
+    }
+
+    .qrcodebigImg {
+        height: 300px;
+        width: 300px;
+        margin: 4rem auto 2rem auto;
+        position: relative;
+        z-index: 999;
+    }
+
+    .icon-close {
+        width: 4rem;
+        height: 4rem;
+        color: #000;
+        line-height: 4rem;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 2.5rem;
+        border: 1px solid #000;
+        padding: 0.3rem;
+    }
+
+    .closeFrames {
+        width: 50px;
+        height: 50px;
+        margin:0 auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="qrcodebigImg" id="qrcodebigImg">
+    </div>
+    <div class="closeFrames" onclick="close_Winiframs()">
+        <i class="aui-iconfont aui-icon-close icon-close"></i>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript">
+apiready = function() {
+    api.parseTapmode();
+    var qrcodebigImg = api.pageParam.qrcodebigImg;
+    $('#qrcodebigImg').html(qrcodebigImg);
+}
+
+function close_Winiframs() {
+    api.setFrameAttr({
+        name: 'openqrcode_img',
+        hidden: true
+    });
+}
+</script>

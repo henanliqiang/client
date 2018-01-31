@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的电池</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/nobatteries.css">
+</head>
+
+<body>
+    <div class="bg">
+        <img src="images/dc_02.png">
+    </div>
+    <div class="aui-content" style="position: relative;">
+        <div class="aui-text-center tngreen">无</div>
+        <div class="aui-text-center aui-padded-t-15 aui-padded-b-15">还没有缴纳电池押金，暂没有电池</div>
+        <div class="aui-text-center tngreen aui-margin-15 aui-padded-t-10 aui-padded-b-10 border">缴纳电池押金---选择就近门店安装，即可享受</div>
+        <div class="aui-padded-15" style="position: absolute;top:29%;width:100%;">
+            <img src="images/xian_05.png" class="aui-pull-left" style="width: 1rem;">
+            <img src="images/xian_05.png" class="aui-pull-right" style="width: 1rem;">
+        </div>
+        <div class="aui-text-left aui-margin-15 aui-padded-t-10 border">
+            <p class="aui-margin-l-15">• 租期内随时更换满电电池，再无续航困扰</p>
+            <p class="aui-margin-l-15">• 门店覆盖率高，市区内3公里内必有门店</p>
+            <p class="aui-margin-l-15">• 可用电池每月更迭，电池常用常新</p>
+            <p class="aui-margin-l-15">• 租期灵活，租期内可随时终止使用，未用租金退还</p>
+            <p class="aui-margin-l-15">• 押金在归还电池后可随时退还</p>
+        </div>
+        <div style="margin-top:2rem;">
+            <div class="aui-content-padded">
+                <p>
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" onclick="jumpUrl.welcome_open()">这就租一块儿</div>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript">
+apiready = function() {
+    // 实现沉浸式效果
+    $api.fixStatusBar($api.dom("header"));
+}
+</script>

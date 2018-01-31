@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>选择预约门店</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/chooseshop.css">
+</head>
+
+<body id="chooseshoplist-frm">
+<!-- 数据列 -->
+    <div class="aui-content" style="padding-bottom:3rem;">
+        <!-- <div class="aui-title">
+            <div class="aui-searchbar" id="search">
+                <div class="aui-searchbar-input aui-border-radius" tapmode>
+                    <img src="images/chooseshop_03.png" style="width:1rem;height:1rem;margin-top:0.15rem;" class="aui-margin-r-5">
+                    <input type="search" v-model="namefindtxt" placeholder="输入街道、建筑、位置名称，查看就近门店" id="search-input">
+                </div>
+            </div>
+        </div> -->
+        <div class="aui-content aui-padded-15">
+            <!-- 示例列表 -->
+            <ul class="aui-list aui-margin-t-15" v-if="BatteryOrder_data.batteryOrderList.length<1">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="" style="line-height: 1rem;text-align: center;">
+                            暂无记录
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="aui-list aui-padded-t-15 aui-padded-b-5 aui-margin-t-15" style="position: relative;" v-else v-for="item in BatteryOrder_data.batteryOrderList" @click="shoplistidBtn(item)">
+                <li class="aui-list-item">
+                    <div class="aui-margin-r-5 block-img">
+                        <img src="images/shop_07.png">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <span v-text="item.name">电动车服务店(Z0038)</span>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-margin-r-5 block-img">
+                        <img src="images/map_11.png">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        {{item.provincename}}{{item.cityname}} {{item.countyname}} {{item.address}}
+                    </div>
+                </li>
+                <li class="aui-list-item" v-if="item.distance || item.distance==0">
+                    <div class="aui-list-item-inner" style="margin-left: 1.75rem;">
+                        <span class="grey aui-font-size-12"><span class="price aui-margin-r-5">距离最近： </span>
+                        {{(item.distance/1000).toFixed(2)}} KM</span>
+                    </div>
+                </li>
+                <div style="position: absolute;top:0.3rem;right:0.3rem;">
+                    <input type="radio" class="aui-radio" name="isclickshopid" v-model="shopid" value="{{item.id}}">
+                </div>
+            </ul>
+            <div class="aui-margin-10 aui-list" style="height:30px;line-height: 30px;text-align: center;">
+                <span v-text="moredatatxt">暂无记录</span>
+            </div>
+        </div>
+    </div>
+    <footer class="aui-bar aui-bar-tab">
+            <div class="aui-content-padded">
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="jumprshopidBtn()">
+                    <span class="aui-pull-left">•</span>立即预约<span class="aui-pull-right">•</span>
+                </div>
+            </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/chooseshoplist.js"></script>
+
+</html>

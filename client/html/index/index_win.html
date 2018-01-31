@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/fonts/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../my/css/my.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+
+<body>
+    <div id="app-index" v-cloak>
+        <header class="aui-bar aui-bar-nav aui-bar-custom" id="aui-header" style="position: fixed;left:0px;top:0px;">
+            <a class="aui-btn aui-pull-right" onclick="jumpUrl.get_cart()" style="right: 10px;">
+                <span class="iconfont icon-gouwuche"></span>
+                <div class="aui-badge" v-text="topcartNum">0</div>
+            </a>
+            <div class="aui-title">
+                <span style="display: inline-block;">
+                    <span id="index_title" tapmode aui-popup-for="top">天牛网</span>
+                    <!-- <i class="aui-iconfont aui-icon-down aui-margin-l-5" aui-popup-for="top"></i> -->
+                </span>
+            </div>
+        </header>
+
+        <!--轮播图-->
+        <div class="swiper-container" v-if="advertList.length>0">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="(index,item) in advertList">
+                    <a href="javascript:void(0);" @click="adjump(item)">
+                        <img v-bind:src="item.url" />
+                    </a>
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <div style="display: none; margin-top: 70px;" v-show="advertList.length==0">
+            <img src="../assets/image/ad-default.png" />
+        </div>
+        <div class="aui-grid aui-grid-custom aui-border-b aui-margin-b-15">
+            <div class="aui-row aui-border-t">
+                <div class="aui-col-5" onclick="jumpUrl.findlogistics()">
+                    <div class="fl-icon fl-icon-q">
+                        <i class="aui-iconfont aui-icon-calendar aui-text-info"></i>
+                    </div>
+                    <div class="aui-grid-label">找物流</div>
+                </div>
+                <div class="aui-col-5" onclick="jumpUrl.findsrorage()">
+                    <div class="fl-icon fl-icon-ho">
+                        <i class="aui-iconfont aui-icon-star aui-text-danger"></i>
+                    </div>
+                    <div class="aui-grid-label">找仓储</div>
+                </div>
+                <div class="aui-col-5" onclick="jumpUrl.easyorder()">
+                    <div class="fl-icon fl-icon-c">
+                        <i class="aui-iconfont aui-icon-cert aui-text-primary"></i>
+                    </div>
+                    <div class="aui-grid-label">易订货</div>
+                </div>
+                <div class="aui-col-5" onclick="jumpUrl.yirongcang()">
+                    <div class="fl-icon fl-icon-l">
+                        <i class="aui-iconfont aui-icon-map aui-text-indigo"></i>
+                    </div>
+                    <div class="aui-grid-label">易融仓</div>
+                </div>
+
+                <div class="aui-col-5" onclick="jumpUrl.findservice()">
+                    <div class="fl-icon fl-icon-hl">
+                        <i class="aui-iconfont aui-icon-share aui-text-warning"></i>
+                    </div>
+                    <div class="aui-grid-label">找服务</div>
+                </div>
+            </div>
+        </div>
+        <!--商品列表-->
+        <div class="aui-content aui-margin-t-15 aui-margin-b-15">
+            <ul class="aui-list aui-media-list">
+                <li class="aui-list-item" v-for="goodsitem in goodslist_data.goodsList" v-on:click="goods_detailbtn(goodsitem)">
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-media aui-media-custom">
+                            <img :src="goodsitem.imgurl">
+                        </div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-text">
+                                <div class="aui-list-item-title aui-ellipsis-2 pro-title-custom" v-text="goodsitem.name"></div>
+                            </div>
+                            <div class="lable-box-custom">
+                                <div class="aui-label aui-label-outlined aui-label-success" v-if="goodssetList.customflag1!='' && goodsitem.customflag1==1" v-text="goodssetList.customflag1">爆款</div>
+                                <div class="aui-label aui-label-outlined aui-label-info" v-if="goodssetList.customflag2!='' && goodsitem.customflag2==1" v-text="goodssetList.customflag2">新品</div>
+                                <div class="aui-label aui-label-outlined aui-label-primary" v-if="goodssetList.customflag3!='' && goodsitem.customflag3==1" v-text="goodssetList.customflag3">热卖</div>
+                                <div class="aui-label aui-label-outlined aui-label-danger" v-if="goodssetList.customflag4!='' && goodsitem.customflag4==1" v-text="goodssetList.customflag4">爆款</div>
+                                <div class="aui-label aui-label-outlined aui-label-success" v-if="goodssetList.customflag5!='' && goodsitem.customflag5==1" v-text="goodssetList.customflag5">优惠</div>
+                            </div>
+                            <div class="aui-list-item-text">
+                                <span class="corange" v-text="goodsitem.price | currency '¥ ' '2'"></span>
+                                <!--<div class="aui-pull-right" v-if="goodsitem.count==0">
+                                &lt;!&ndash; 数量判定 &ndash;&gt;
+                                <div class="aui-counter">
+                                    <div class="aui-counter-minus" :class="{'aui-disabled':(goodsitem.goodsCount==1 || goodsitem.goodsCount <= goodsitem.minquantity)}" tapmode v-on:click.stop="cut_to_cart($index)"></div>
+                                    <input class="aui-counter-input" type="number" min="0" v-model="goodsitem.goodsCount" readonly="readonly">
+                                    <div class="aui-counter-plus" :class="{'aui-disabled':(goodsitem.limitquantity>0 &&  goodsitem.goodsCount >=goodsitem.limitquantity) || goodsitem.goodsCount>goodsitem.stock}" tapmode v-on:click.stop="add_to_cart($index)"></div>
+                                </div>
+                            </div>-->
+                                <!-- 没有规格- 出来购物车 -->
+                                <div class="aui-pull-right" v-on:click.stop="show_standardbtn(goodsitem)">
+                                    <span v-if="goodsitem.putway==0"><i class="aui-iconfont aui-icon-info aui-font-size-12 aui-margin-r-10"></i>备货中</span>
+                                    <i class="aui-iconfont aui-icon-cart aui-font-size-20 aui-margin-r-10"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/aui-popup.js"></script>
+<script type="text/javascript" src="../assets/js/aui-lazyload.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../assets/js/swiper.jquery.js"></script>
+<!-- <script type="text/javascript" src="../index/js/index.js"></script> -->
+
+</html>

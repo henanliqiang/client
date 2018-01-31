@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+</head>
+
+<body>
+    <div id="reset-pwd-frm">
+        <div class="aui-content">
+            <ul class="aui-list aui-form-list aui-list-custom">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            输入新密码
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="password" placeholder="6--16位连续英文/数字组合，不区分大小写" v-model="password">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            确认新密码
+                        </div>
+                        <div class="aui-list-item-input ">
+                            <input type="password" placeholder="请再次输入新密码进行确认" v-model="asspassword">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="aui-content-padded aui-margin-t-15">
+            <div class="aui-btn aui-btn-block aui-btn-info aui-btn-sm" v-on:click="saveBtn">提交</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/global/aes.min.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../register/reset_pwd.js"></script>

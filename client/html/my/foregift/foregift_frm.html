@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的电池</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/foregift.css">
+</head>
+
+<body id="foregift-frm">
+    <div class="bg">
+        <img src="images/dc_02.png">
+    </div>
+    <div class="aui-content">
+        <div class="aui-text-center tngreen" v-if="ShopAndServicedata.isdeposit === 1 && ShopAndServicedata.isinstall === 0">
+            <span v-text="ShopAndServicedata.batteryname">6020锂电</span>
+            <span v-text="ShopAndServicedata.groupnum">1</span>组</div>
+        <div class="aui-text-center tngreen" v-if="ShopAndServicedata.isdeposit === 0">
+            <span>无</span>
+        </div>
+        <div class="aui-text-center aui-padded-t-15 aui-padded-b-15">
+            <span v-if="ShopAndServicedata.isdeposit === 0">未租用电池</span>
+            <span v-if="ShopAndServicedata.isdeposit === 1 && ShopAndServicedata.isinstall === 0">电池正在租用，押金已冻结</span>
+            <span v-if="ShopAndServicedata.isrefund === 1">押金可赎回</span>
+        </div>
+        <div class="aui-text-center aui-padded-t-15 aui-padded-b-15 price aui-font-size-20">
+            ￥ <span v-text="ShopAndServicedata.deposit">15030.00</span>
+        </div>
+        <!-- 电池押金---租金逾期 -->
+        <template v-if="ShopAndServicedata.isoverdue === 1">
+            <div class="aui-margin-15 aui-padded-t-15 aui-padded-b-15">
+                <ul class="aui-padded-15" style="background: #fff;border-radius: 0.5rem;">
+                    <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                        <div class="aui-pull-left grey">当前租期</div>
+                        <div class="aui-pull-right black clearfix">
+                            至 <span v-text="ShopAndServicedata.duedate">2017-12-1</span>
+                            <span class="aui-btn aui-btn-danger">已逾期</span>
+                        </div>
+                    </li>
+                    <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                        <div class="aui-pull-left grey">逾期天数</div>
+                        <div class="aui-pull-right black"><span v-text="ShopAndServicedata.overDay">198</span>天</div>
+                    </li>
+                    <li class="clearfix aui-font-size-14 text-height aui-margin-5 aui-margin-t-15">
+                        <div class="aui-pull-left grey">滞纳金</div>
+                        <div class="aui-pull-right black">￥ <span v-text="ShopAndServicedata.unpaidlatefee">198</span> (￥ <span v-text="(ShopAndServicedata.rent?ShopAndServicedata.rent:'12')">12.00</span> /天)</div>
+                    </li>
+                </ul>
+            </div>
+            <div style="margin-top:1rem;">
+                <div class="aui-content-padded">
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="insertRenewBtn()">
+                        <span class="aui-pull-left">•</span> 立即续租
+                        <span class="aui-pull-right">•</span>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-padded-15 aui-font-size-14 price">
+                逾期后每日从押金金额中扣取滞纳金；
+                <br/>逾期情况下不可赎回押金，请尽快续租；
+            </div>
+        </template>
+        <!-- 电池押金---已缴纳押金，电池正常使用 -->
+        <div class="aui-padded-15 aui-font-size-14 grey" v-if="ShopAndServicedata.isdeposit === 1 && ShopAndServicedata.isinstall === 0">若要赎回押金，请在“我的电池”中提交退租预约，并在服务门店完成电池退还</div>
+        <div style="margin-top:2rem;">
+            <div class="aui-content-padded">
+                <!-- 逾期不能退组 -->
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm aui-btn-disable" v-if="ShopAndServicedata.isrefund === 0">
+                    <span class="aui-pull-left">•</span>赎回押金<span class="aui-pull-right">•</span>
+                </div>
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="inredeemBtn" v-else>
+                    <span class="aui-pull-left">•</span>赎回押金<span class="aui-pull-right">•</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/foregift.js"></script>

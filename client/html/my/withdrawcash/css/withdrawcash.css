@@ -1,0 +1,6 @@
+::-webkit-input-placeholder {
+    text-align: right;
+}
+.aui-list .aui-list-item-input{
+    padding-right: 0;
+}

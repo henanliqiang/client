@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+    <style>
+    html,
+    body {
+        background-color: transparent !important;
+    }
+
+    .determine {
+        background-color: #FCAE68;
+        color: #fff;
+        font-size: 20px;
+        height: 53px;
+        width: 100%;
+        text-align: center;
+        line-height: 53px;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .mask {
+        width: 100%;
+        height: 130px;
+        border-bottom: 1px solid #eee;
+        background-color: #000000;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+    }
+
+    .bg-white {
+        background: #fff;
+    }
+
+    #info {
+        padding: 5px;
+    }
+
+    .goods-info .right {
+        margin-left: 30px;
+    }
+
+    .goods {
+        padding: 0.75rem 0.75rem;
+    }
+
+    .label-list {
+        margin-top: 10px;
+        overflow: hidden;
+    }
+
+    .label-list .label {
+        display: block;
+        float: left;
+        margin-right: 10px;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+
+    .label-list .active {
+        color: #fff;
+        background: #03a9f4;
+    }
+
+    .label-list .active.aui-border:after {
+        border: 1px solid #e74c3c;
+    }
+
+    .label-list .active.aui-border:after {
+        border-radius: 5px;
+    }
+
+    .label-list .aui-border:after {
+        border-radius: 5px;
+    }
+
+    .label-list .label input {
+        display: none;
+    }
+
+    .aui-slide-node img {
+        max-height: 200px !important;
+        height: auto;
+        width: auto;
+    }
+
+    .controlimg {
+        word-break: break-all !important;
+        /*支持IE，chrome，FF不支持*/
+        word-wrap: break-word !important;
+        /*支持IE，chrome，FF*/
+    }
+
+    .controlimg img {
+        width: 100% !important;
+    }
+
+    .controlimg table {
+        width: 100% !important;
+    }
+
+    .goods-title {
+        font-size: 13px !important;
+    }
+
+    .aui-counter {
+        display: table;
+        -webkit-transform: scale(1, 1);
+    }
+    </style>
+</head>
+
+<body id="app-indexstand-form">
+    <div v-clock id="js_popid">
+        <div class="mask" tapmode onclick="closeFrame();"></div>
+        <section class="aui-content bg-white" id="info" style="padding-bottom: 50px;">
+            <div class="aui-content aui-margin-t-15">
+                <ul class="aui-list aui-media-list">
+                    <li class="aui-list-item">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-media aui-media-custom" v-on:click="goods_detailbtn(goodsdetail_data.summaryId,goodsdetail_data.goodsId)">
+                                <img :src="goodsdetail_data.imgurl" v-if="goodsdetail_data.imgurl">
+                                <img src="../assets/image/load-img.png" v-else>
+                            </div>
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-text" v-on:click="goods_detailbtn(goodsdetail_data.summaryId,goodsdetail_data.goodsId)">
+                                    <div class="aui-list-item-title aui-ellipsis-2 pro-title-custom" v-text="goodsdetail_data.name"></div>
+                                </div>
+                                <div class="lable-box-custom">
+                                    <div class="aui-label aui-label-outlined aui-label-success" v-if="goodssetList.customflag1!='' && goodsdetail_data.customflag1==1" v-text="goodssetList.customflag1">爆款</div>
+                                    <div class="aui-label aui-label-outlined aui-label-info" v-if="goodssetList.customflag2!='' && goodsdetail_data.customflag2==1" v-text="goodssetList.customflag2">新品</div>
+                                    <div class="aui-label aui-label-outlined aui-label-primary" v-if="goodssetList.customflag3!='' && goodsdetail_data.customflag3==1" v-text="goodssetList.customflag3">热卖</div>
+                                    <div class="aui-label aui-label-outlined aui-label-danger" v-if="goodssetList.customflag4!='' && goodsdetail_data.customflag4==1" v-text="goodssetList.customflag4">爆款</div>
+                                    <div class="aui-label aui-label-outlined aui-label-success" v-if="goodssetList.customflag5!='' && goodsdetail_data.customflag5==1" v-text="goodssetList.customflag5">优惠</div>
+                                </div>
+                                <div class="aui-list-item-text">
+                                    <div class=" aui-font-size-12">商品编码：
+                                        <span v-text="goodsdetail_data.sku"></span>
+                                    </div>
+                                </div>
+                                <div class="aui-list-item-text">
+                                    <b class="corange" v-text="goodsdetail_data.price | currency '¥ ' '2'"></b>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="aui-content">
+                <!-- 规格1 -->
+                <div class="goods aui-border-b" v-if="goodsdetail_data.standardname1!='' && goodsdetail_data.standardList1">
+                    <div class="title">
+                        <span v-text="goodsdetail_data.standardname1"></span> ：
+                    </div>
+                    <div class="label-list">
+                        <label class="label aui-border aui-margin-5" :class="{'active':item==goodsdetail_data.standard1}" v-for="item in goodsdetail_data.standardList1">
+                            <input type="radio" name="standard1" v-on:click="selectStandardBtn(item,'standard1')">
+                            <span v-text="item"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- 规格2 -->
+                <div class="goods aui-border-b" v-if="goodsdetail_data.standardname2!='' && goodsdetail_data.standardList2">
+                    <div class="title">
+                        <span v-text="goodsdetail_data.standardname2"></span> ：
+                    </div>
+                    <div class="label-list">
+                        <label class="label aui-border aui-margin-5" :class="{'active':item==goodsdetail_data.standard2}" v-for="item in goodsdetail_data.standardList2">
+                            <input type="radio" name="standard2" v-on:click="selectStandardBtn(item,'standard2')">
+                            <span v-text="item"></span>
+                        </label>
+                    </div>
+                </div>
+                <!-- 规格3 -->
+                <div class="goods aui-border-b" v-if="goodsdetail_data.standardname3!='' && goodsdetail_data.standardList3">
+                    <div class="title">
+                        <span v-text="goodsdetail_data.standardname3"></span> ：
+                    </div>
+                    <div class="label-list">
+                        <label class="label aui-border aui-margin-5" :class="{'active':item==goodsdetail_data.standard3}" v-for="item in goodsdetail_data.standardList3">
+                            <input type="radio" name="standard3" v-on:click="selectStandardBtn(item,'standard3')">
+                            <span v-text="item"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="goods aui-border-b">
+                    <span class=""> 库存：
+                        <span v-if="goodssetList.isforbidorder">
+                            <span v-text="goodsdetail_data.stock-goodsdetail_data.prenumber"></span>
+                    <span v-text="goodsdetail_data.unitName"></span>
+                    </span>
+                    <span v-else>有货</span>
+                    </span>
+                    <span class="aui-margin-l-15">起订量：
+                        <span v-text="goodsdetail_data.minquantity>0?goodsdetail_data.minquantity:'不限'"></span>
+                    </span>
+                    <span class="aui-margin-l-15">限订量：
+                        <span v-text="goodsdetail_data.limitquantity>0?goodsdetail_data.minquantity:'不限'"></span>
+                    </span>
+                </div>
+                <div class="goods aui-border-b" style="height: 3rem;">
+                    <div class="title aui-pull-left">
+                        购买数量（
+                        <span v-text="goodsdetail_data.unitName"></span> ）：
+                    </div>
+                    <div class="title aui-pull-right">
+                        <div class="aui-counter">
+                            <div class="aui-counter-minus" :class="{'aui-disabled':(goodsCount==1 || goodsCount <= goodsdetail_data.minquantity)}" v-on:click="change_goods_num(0)"></div>
+                            <input class="aui-counter-input" type="number" min="0" v-model="goodsCount" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" onfocus="if(this.value!=''){this.value=''}" onblur="if(this.value=='' || this.value<{{goodsdetail_data.minquantity}}){this.value={{goodsdetail_data.minquantity}}};" v-on:change="goodsCountFun(goodsdetail_data)">
+                            <div class="aui-counter-plus" :class="{'aui-disabled':(goodsdetail_data.limitquantity>0 && goodsCount >=goodsdetail_data.limitquantity)|| goodsCount>=goodsdetail_data.stock}" v-on:click="change_goods_num(1)"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="goods aui-border-b" style="height: 3rem;">
+                    <div class="title aui-pull-left">
+                        已选择：
+                        <span v-text="goodsCount">0</span> 件商品
+                    </div>
+                    <div class="title aui-pull-right">
+                        价格总计：
+                        <b class="corange" v-text="goodsdetail_data.price*goodsCount | currency '¥ ' '2'"></b>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="aui-bar aui-bar-tab aui-padded-10" id="footer">
+        <div class="aui-col-xs-6">
+            <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-warning aui-pull-left" style="width: 98%;" onclick="closeFrame();">取消</div>
+        </div>
+        <div class="aui-col-xs-6">
+            <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-info aui-pull-right" style="width: 98%;" v-on:click="addCarts(goodsdetail_data.goodsId, goodsCount, goodsdetail_data.limitquantity, goodsdetail_data.minquantity, goodsdetail_data.stock)">加入购物车</div>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../index/js/index_stand.js"></script>
+<script type="text/javascript">
+</script>

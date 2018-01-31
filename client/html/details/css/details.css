@@ -1,0 +1,12 @@
+.border{
+    border:1px solid red;
+    background:#fff;
+    color:#333;
+}
+.active{
+    background:red;
+    color:#fff;
+}
+.aui-bar-btn-item{
+    border-color: #7ec32f;
+}

@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=1,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/bespeak.css">
+    <style>
+    .info {
+        background: rgba(255, 112, 16, .80);
+        box-shadow: 0px 5px 6px #ffd2ba;
+        color: #fff;
+        font-size: 14px;
+        height: 40px;
+        line-height: 42px;
+        text-align: center;
+    }
+	.aui-list .brown{
+      color: #ffffff;
+      background: rgba(255, 112, 16, .80);
+    }
+    .aui-list .block{
+      display: block;
+    }
+    </style>
+</head>
+
+<body id="bespeak-form">
+    <div class="aui-content" style="padding-bottom:3rem;">
+        <!-- 已经逾期 -->
+        <div class="info " v-show="selectAppointInfo.isoverdue==1">
+            <!-- <span>您的租期即将到期，请尽快续租</span> -->
+            <span>您的租期已逾期，每日会扣除押金，请尽快续租</span>
+        </div>
+        <ul class="aui-list aui-list-noborder">
+			      <li class="aui-list-item brown" v-if="activeDetails.number==1">
+              月租送7000天牛币(价值70元)&nbsp;&nbsp;季租和年租送支付金额同等价值的天牛币&nbsp;&nbsp;例:电池48V20AH 季租支付270元送27000天牛币
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">当前租期：</div>
+                    <div class="aui-list-item-right">
+                        <span>至</span>
+                        <span v-text="selectAppointInfo.duedate">2017-08-08</span>
+                        <span v-if="selectAppointInfo.isoverdue==1" style="background:#BB4D53;padding:3px;color:#fff;">已逾期</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">租用电池型号：</div>
+                    <div class="aui-list-item-right">
+                        <span v-text="selectAppointInfo.batteryname">6020锂电</span>
+                        <span v-text="selectAppointInfo.groupnum">1</span>组
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10" style="background-size: 100% 0px;">
+                <div class="aui-list-item-inner aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">选择租期：</div>
+                    <div class="aui-list-item-right clearfix">
+                        <div class="zq-block fl aui-margin-l-5" :class="{'active':(item.id==batteryrenttime.rentimeId)}" v-for="item in batteryrenttime.renttimeArr" @click="chooserentBtn($index)">
+                            <span v-text="item.name">日租</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10 aui-padded-b-10" v-if="batteryrenttime.dayrentStas">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">选择租赁天数：</div>
+                    <div class="aui-list-item-right" style="max-width: 40%;">
+                        <div class="aui-bar aui-bar-btn aui-bar-btn-sm">
+                            <div class="aui-bar-btn-item aui-padded-t-5 aui-padded-b-5" tapmode v-on:click.stop="change_goods_num(0)">
+                                <i class="aui-iconfont aui-icon-minus"></i>
+                            </div>
+                            <div class="aui-bar-btn-item aui-padded-l-5 aui-padded-r-5" style="width:2%">
+                                <input class="aui-input aui-text-center" type="number" v-model="goodsCount" min="1" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" onfocus="if(this.value!=''){this.value=''}" onblur="if(this.value=='' || this.value<1){this.value=1};">
+                            </div>
+                            <div class="aui-bar-btn-item aui-padded-t-5 aui-padded-b-5" tapmode v-on:click.stop="change_goods_num(1)">
+                                <i class="aui-iconfont aui-icon-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10" style="background-size: 100% 0px;">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">租金：</div>
+                    <div class="aui-list-item-right">
+                        <span class="price" v-text="costprice | currency '¥ ' '2' ">￥0.00</span>
+                    </div>
+                </div>
+			</li>
+            <li class="aui-list-item aui-padded-10 aui-margin-b-10 block" v-if="batteryrenttime.rentimeId!==3 && activeDetails.number==1">赠送
+              <span v-if="batteryrenttime.rentimeId==0">{{month}}</span>
+              <span v-if="batteryrenttime.rentimeId==1">{{season}}</span>
+              <span v-if="batteryrenttime.rentimeId==2">{{annualRent}}</span>
+              天牛币
+            </li>
+            <li class="aui-padded-10 aui-font-size-14 grey">
+                新续租将从当前租期到期后向后顺延
+            </li>
+            <template v-if="selectAppointInfo.isoverdue==1">
+                <li class="aui-list-item" style="background-size: 100% 0px;">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">逾期滞纳金：</div>
+                        <div class="aui-list-item-right">
+                            <span class="price" v-text="selectAppointInfo.unpaidlatefee | currency '¥ ' '2' ">￥0.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-padded-10 aui-font-size-14 grey">
+                    滞纳金用以补平已抵扣的押金，并回复正常服务功能；
+                    <br> 滞纳金按照日租金额 12元/天进行计算；
+                </li>
+            </template>
+            <li class="aui-list-item aui-margin-t-15">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">选择支付方式</div>
+                </div>
+            </li>
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('0')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">支付宝</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="0" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('1')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">微信</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="1" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('2')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/qb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">钱包支付</span> （余额 ￥ {{selectAppointInfo.wallet}}）
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="2" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item aui-text-left aui-padded-l-15" tapmode style="width: auto;">
+            租金：<span class="price" v-text="(costprice + selectAppointInfo.unpaidlatefee) | currency '¥ ' '2' ">￥0.00</span>
+        </div>
+        <div class="aui-bar-tab-item" tapmode style="width: 6rem;background: #7ec32f; color: #fff;" onclick="saveBtn()">立即续租</div>
+    </footer>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/battery_isrenew.js"></script>
+
+</html>

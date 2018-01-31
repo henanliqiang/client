@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+    <style type="text/css">
+    .aui-card-list img {
+        width: 100px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .wordpad {
+        padding: 10px 0px;
+    }
+    </style>
+</head>
+
+<body style="background: #fff;">
+    <div class="aui-content" id="app">
+    <div class="aui-card-list" style="height: 100%;">
+            <div class="row aui-text-center" style="padding: 1rem;">
+                <img src="../assets/image/logo.png" style="width: 3rem; height:3rem; margin: 0 auto;" />
+            </div>
+            <div class="aui-text-center">
+            郑州电牛商贸有限公司
+        </div>
+                <div class="aui-card-list-content-padded">
+
+            <p class="aui-font-size-12">郑州电牛商贸有限公司，成立于2016年，其核心团队于2012年进入郑州
+                电池行业，将近6年的时间里成功在郑州的电池行业打造出三个直营分店，
+                近千个网点合作商。完成国内销售与服务一体化的典范，积累了丰富的电
+                动车电池销售经验，拥有庞大的消费群体，并在北京，浙江两地有自己的
+                独立经营公司，形成了科学的管理体系。</p>
+                    <br>
+            <p class="aui-font-size-12">团队理念：公司秉承诚信、规范、高效的工作原则，用商品物美价优赢得
+                市场，以创意服务取得信誉，竭诚为广大客户提供优质、高效、快捷的服
+                务。</p>
+            <br>
+            <p class="aui-font-size-12">服务项目：锂电池租赁与换电及其附加其它服务。</p>
+            <br>
+            <p class="aui-font-size-12">展望未来：凭借与其他租赁平台的差异化定位：更注重于为消费者提供精
+                细化服务。
+            </p>
+                </div>
+            </div>
+        <!-- <div class="aui-content-padded aui-margin-t-15">
+            <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-info" onclick="checkUpdate()">检测更新，是否有新版本</div>
+        </div> -->
+        <!-- <div class="aui-content-padded aui-margin-t-15" >
+        <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-info">推荐给朋友>></div>
+    </div> -->
+    </div>
+<footer class="aui-bar aui-bar-tab" id="footer">
+    <p class="aui-text-center" style="color: #999;">Copyright @2016-2017</p>
+    <p class="aui-text-center" style="color: #999;margin-bottom: 0.5rem;">郑州电牛商贸有限公司 版权所有</p>
+</footer>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript">
+apiready = function() {
+
+    // 下拉刷新数据...
+    apps.pageDataF5(
+        function() {
+            // 初始化
+            // vm.init();
+        }
+    );
+
+
+};
+function checkUpdate() {
+        var mam = api.require('mam');
+        mam.checkUpdate(function(ret, err) {
+            if (ret) {
+                var result = ret.result;
+                if (result.update == true && result.closed == false) {
+                var str = '新版本型号:' + result.version + ';<br/>更新提示语:' + result.updateTip + ';<br/>发布时间:' + result.time;
+                    api.confirm({
+                    title: '有新版本更新,是否下载并安装 ',
+                        msg: str,
+                        buttons: ['确定', '取消']
+                    }, function(ret, err) {
+                        if (ret.buttonIndex == 1) {
+                            if (api.systemType == "android") {
+                                api.download({
+                                    url: result.source,
+                                    report: true
+                                }, function(ret, err) {
+                                    if (ret && 0 == ret.state) { /* 下载进度 */
+                                        api.toast({
+                                            msg: "正在下载应用" + ret.percent + "%",
+                                            duration: 2000
+                                        });
+                                    }
+                                    if (ret && 1 == ret.state) { /* 下载完成 */
+                                        var savePath = ret.savePath;
+                                        api.installApp({
+                                            appUri: savePath
+                                        });
+                                    }
+                                });
+                            }
+                            if (api.systemType == "ios") {
+                                api.installApp({
+                                    appUri: result.source
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    api.alert({
+                        msg: "暂无更新"
+                    });
+                }
+            } else {
+                api.alert({
+                    msg: err.msg
+                });
+            }
+        });
+    }
+</script>

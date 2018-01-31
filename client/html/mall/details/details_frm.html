@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/details.css">
+</head>
+
+<body id="app-goodswin-frm">
+    <!-- 默认数据 -->
+    <div class="aui-content" style="margin-bottom: 2.25rem;" v-if="mrdivbox_stats">
+        <div>
+            <img src="../../assets/image/load-img.png" style="width:100%;">
+        </div>
+        <div class="aui-padded-l-15 aui-padded-r-15 aui-padded-b-15">
+            <div class=" aui-padded-t-15 aui-margin-b-5">天牛网产品</div>
+            <p class=" price aui-font-size-18">￥1650.00</p>
+            <p class="">已售97</p>
+        </div>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in aui-margin-b-15">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner">
+                        选择颜色
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-padded-t-5 clearfix">
+                        <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border active">红色</div>
+                        <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border">绿色</div>
+                        <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border">白色</div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="aui-list aui-list-in aui-margin-b-15">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner">
+                        购买数量
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-left">
+                            <div class="aui-bar aui-bar-btn aui-bar-btn-sm" style="width:60%;float:left;">
+                                <div class="aui-bar-btn-item">
+                                    <i class="aui-iconfont aui-icon-minus"></i>
+                                </div>
+                                <div class="aui-bar-btn-item">
+                                    <input type="number" class="aui-input aui-text-center" value="1">
+                                </div>
+                                <div class="aui-bar-btn-item">
+                                    <i class="aui-iconfont aui-icon-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 加载真实data -->
+    <div class="aui-content" style="margin-bottom: 2.25rem;" v-else>
+        <!-- 轮播图 -->
+        <div id="aui-slide" style="height:16rem;" v-if="goodsdetail_data.imgList.length>0">
+
+       </div>
+        <div style="display: none;" v-show="goodsdetail_data.imgList.length==0">
+            <img :src="goodsdetail_data.imgurl?goodsdetail_data.imgurl:'../../assets/image/load-img.png'" style="width:100%;">
+        </div>
+        <div class="aui-padded-15 aui-margin-t-15 aui-margin-b-15 aui-list">
+            <div class=" aui-padded-t-15 aui-margin-b-5" v-text="goodsdetail_data.name">绿能 B1233 家用电动车</div>
+            <p class=" price aui-font-size-18" v-text="goodsdetail_data.price | currency '¥ ' '2'">￥1650.00</p>
+            <p class="">
+                已售：<span v-text="goodsdetail_data.goodscount">666</span>
+                <span class="aui-padded-l-15">库存： <span v-text="goodsstand_list.stock">666</span></span>
+            </p>
+        </div>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-list-in aui-margin-b-15" v-if="goodsdetail_data.ismulti==1">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner">
+                        选择规格
+                    </div>
+                </li>
+                <!-- ,"standardList":[
+                {"stock":500,"count":0,"cartId":"","standardid":6,"name1":"X","imgurl":"http://tianniu-test.oss-cn-shanghai.aliyuncs.com/mall/1515578847603/434846962763117525.jpg"},
+                {"stock":200,"count":0,"cartId":"","standardid":7,"name1":"S","imgurl":"http://tianniu-test.oss-cn-shanghai.aliyuncs.com/mall/1515578863087/1515578863087.png"}] -->
+                <li class="aui-list-item">
+                    <div class="aui-padded-t-5 clearfix">
+                        <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border" :class="{'active':goodsstand_list.standardid==itemst.standardid}" v-for="itemst in goodsdetail_data.standardList" @click="checksStandardBtn(itemst,$index)">
+                            <span v-text="itemst.name1">红色</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="aui-list aui-list-in aui-margin-b-15">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner">
+                        购买数量
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-left">
+                            <div class="aui-bar aui-bar-btn aui-bar-btn-sm" style="width:60%;float:left;">
+                                <div class="aui-bar-btn-item" @click.stop="change_goods_num(0)">
+                                    <i class="aui-iconfont aui-icon-minus"></i>
+                                </div>
+                                <div class="aui-bar-btn-item">
+                                    <input class="aui-input aui-text-center" type="number" v-model="goodsstand_list.count" min="1" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" onfocus="if(this.value!=''){this.value=''}" onblur="if(this.value==''){this.value=1};if(this.value>={{(goodsstand_list.stock)}}){this.value={{(goodsstand_list.stock)}}};">
+                                </div>
+                                <div class="aui-bar-btn-item" @click.stop="change_goods_num(1)">
+                                    <i class="aui-iconfont aui-icon-plus"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 详情 -->
+        <div class="aui-content aui-margin-b-15">
+            <div v-html="goodsdetail_data.detail" class="aui-padded-15">
+                暂无详情
+            </div>
+        </div>
+    </div>
+    <!-- style="border-top:1px solid #ccc;" -->
+    <style>
+        .isfavoriteimg{
+            background:url(../../openmap/images/star-on.png) 0 0;
+            color:#fff;
+        }
+    </style>
+
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item" tapmode style="width: 5rem;" @click="myfavorite">
+            <i class="aui-iconfont aui-icon-star" :class="{'isfavoriteimg':goodsdetail_data.isfavorite==1}"></i>
+            <!-- <div><img src="../../openmap/images/star-on.png" alt=""></div> -->
+            <div class="aui-bar-tab-label">收藏</div>
+        </div>
+        <!-- <div class="aui-bar-tab-item" tapmode style="width: 3rem;">
+        <i class="aui-iconfont aui-icon-comment"></i>
+        <div class="aui-bar-tab-label">分享</div>
+    </div> -->
+        <div class="aui-bar-tab-item aui-text-white" tapmode style="width: auto; background: #ff7010;" @click="addCarts">加入购物车</div>
+        <!-- <div class="aui-bar-tab-item " tapmode style="width: auto; background: #ff9966; color:#ff3300;" @click="buygoodsBtn">立即购买</div> -->
+    </footer>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../../assets/js/aui-slide.js"></script>
+<script type="text/javascript" src="js/goods_detail.js"></script>
+
+</html>

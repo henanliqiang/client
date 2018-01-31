@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的电池</title>
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/backbattery.css">
+    <link rel="stylesheet" type="text/css" href="../../../../fonts/stylesheet.css" />
+</head>
+
+<body id="badbattery-frm" style="padding-bottom:5.5rem;">
+    <div class="aui-content">
+        <div class="aui-padded-15 aui-text-center">
+            <div>
+                <i class="iconfonts icon-bukaixin tngreen" style="font-size: 5rem;"></i>
+            </div>
+        </div>
+        <div class="aui-padded-15">
+            <div class="aui-text-center">您的电池已确认损坏，各类预约服务已终止。</div>
+            <div class="aui-card-list-content-padded aui-margin-l-15 aui-margin-r-15">
+                <img :src="lossimg?lossimg:'../../../assets/image/load-img.png'">
+            </div>
+            <div class="aui-text-center aui-margin-15">
+                <span>报损时间：   </span>
+                <span v-text="finishtime">2018-01-01  </span>
+            </div>
+            <p class="aui-margin-b-15">按照用户服务协议规定，该电池由租赁转为购买到个人，天牛网不再接受您的退还请求，押金已抵扣，您可以自行处理当前电池；</p>
+            <p class="aui-margin-b-15">点击查看<span class="aui-text-info" onclick="jumpUrl.agreement()">《天牛网用户服务协议》</span></p>
+            <p class="aui-margin-b-15">若要重新使用平台服务，请点击下方“开通服务”按钮，重新缴纳押金使用。</p>
+        </div>
+    </div>
+    <footer class="aui-bar aui-bar-tab aui-padded-20" id="footer">
+       <div class="aui-content-padded">
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm aui-margin-b-15" @click="welcome_open()">
+                    <span class="aui-pull-left">•</span>开通服务<span class="aui-pull-right">•</span>
+                </div>
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="callus">
+                    <span class="aui-pull-left">•</span>咨询客服<span class="aui-pull-right">•</span>
+                </div>
+            </div>
+    </footer>
+</body>
+
+</html>
+<script type="text/javascript" src="../../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/badbattery.js"></script>

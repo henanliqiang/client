@@ -1,0 +1,56 @@
+<widget id="A6062819117499" version="0.0.1">
+    <name>天牛网-用户端</name>
+    <description>
+        天牛网-用户端
+    </description>
+    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+        天牛网-用户端
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="pageBounce" value="false" />
+    <preference name="appBackground" value="rgba(0,0,0,0.0)" />
+    <preference name="windowBackground" value="rgba(0,0,0,0.0)" />
+    <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)" />
+    <preference name="hScrollBarEnabled" value="true" />
+    <preference name="vScrollBarEnabled" value="true" />
+    <preference name="autoLaunch" value="true" />
+    <preference name="fullScreen" value="true" />
+    <preference name="autoUpdate" value="true" />
+    <preference name="smartUpdate" value="true" />
+    <preference name="debug" value="true" />
+    <preference name="iOS7StatusBarAppearance" value="false" />
+    <preference name="statusBarAppearance" value="false" />
+    <permission name="readPhoneState" />
+    <permission name="camera" />
+    <permission name="record" />
+    <permission name="location" />
+    <permission name="audio" />
+    <permission name="fileSystem" />
+    <permission name="internet" />
+    <permission name="bootCompleted" />
+    <permission name="hardware" />
+    <preference name="backgroundMode" value="audio | location"/>
+    <feature name="aliPayPlus">
+        <param name="urlScheme" value="aliPayPlusA6057963265053" />
+    </feature>
+    <feature name="ajpush">
+        <param name="app_key" value="7f94e39ea23ac96ba25154bb" />
+        <param name="channel" value="tianniu-client-push" />
+    </feature>
+    <feature name="wxPay">
+        <param name="urlScheme" value="wxdde7835e5a03853e" />
+        <param name="apiKey" value="wxdde7835e5a03853e" />
+        <param name="apiSecret" value="6bcb21d56f24629409f8875c5234e1e0" />
+    </feature>
+    <feature name="bMap">
+        <param name="android_api_key" value="GezZqDeZWRA6kxRQw7ytZUsytX4GuKDH" />
+        <param name="ios_api_key" value="RRMNELnyIyUxY5VXdEzRHEgKYKfx2nB5" />
+    </feature>
+    <feature name="baiduNavigation">
+        <param name="android_api_key" value="GezZqDeZWRA6kxRQw7ytZUsytX4GuKDH" />
+        <param name="android_tts_appid" value="10265194" />
+        <param name="ios_api_key" value="RRMNELnyIyUxY5VXdEzRHEgKYKfx2nB5" />
+        <param name="ios_tts_appid" value="10265268" />
+    </feature>
+</widget>

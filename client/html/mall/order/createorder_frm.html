@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/fonts/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css" />
+</head>
+
+<body id="order-detail" v-cloak>
+    <div>
+        <section class="aui-content aui-margin-b-15" style="padding-bottom: 70px;">
+            <ul class="aui-list aui-list-custom aui-form-list">
+                <li class="aui-list-item aui-list-item-middle" @click="select_address">
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-pull-left">
+                            收货地址
+                        </div>
+                        <!--<div class="aui-pull-right cgray9 aui-margin-r-15">{{deliverAddresslist.length}}个可用地址</div>-->
+                        <div class="aui-pull-right cgray9" style="margin-right:30px;">
+                            <span v-if="deliverAddress">修改</span>
+                            <span v-else>选择地址</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="aui-card-list aui-card-list-custom" v-if="deliverAddress">
+                <div class="aui-card-list-content-padded aui-border-b">
+                    <div class="aui-row aui-row-padded">
+                        <div class="aui-pull-left">
+                            <p class="aui-font-size-14">收货人： {{deliverAddress.receiver}} {{deliverAddress.cellphone}}</p>
+                            <p class="aui-font-size-14">收货地址： {{alladdress}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-card-list aui-card-list-custom aui-list aui-list-custom aui-form-list">
+                <div class="aui-card-list-content-padded aui-border-b">
+                    <div class="aui-row aui-row-padded aui-list-item-inner">
+                        <div class="aui-pull-left">
+                            <span>配送方式</span>
+                        </div>
+                        <div class="aui-pull-left">
+                            <label v-for="item in distribution.distriArray">
+                                <input type="radio" class="aui-radio" name="goodstype" v-model="distribution.deliverymode" value="{{item.fid}}"> {{item.findsname}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-card-list aui-card-list-custom" v-if="deliverAddress">
+                <div class="aui-card-list-content-padded aui-border-b">
+                    <div class="aui-row aui-row-padded">
+                        <div class="aui-pull-left">
+                            <p class="aui-font-size-14">配送费用： </p>
+                        </div>
+                        <div class="aui-pull-right">
+                            <p class="aui-font-size-14 price">
+                                <span v-if="distribution.deliverymode==1">￥ {{getOrderSet.installcost}} </span>
+                                <span v-if="distribution.deliverymode==2">￥ {{getOrderSet.delivercost}} </span>
+                                <span v-if="distribution.deliverymode==3">￥ {{getOrderSet.logisticscost}} </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 支付 -->
+            <ul class="aui-list aui-list-noborder">
+                <li class="aui-list-item aui-margin-t-15">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-title">选择支付方式</div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner" @click="paymodeBtn('0')">
+                        <div class="aui-list-item-title">
+                            <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                            <span style="line-height: 1.5rem;">支付宝</span>
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input type="radio" class="aui-radio" name="paymode" value="0" v-model="paymode">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner" @click="paymodeBtn('1')">
+                        <div class="aui-list-item-title">
+                            <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                            <span style="line-height: 1.5rem;">微信</span>
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input type="radio" class="aui-radio" name="paymode" value="1" v-model="paymode">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner" @click="paymodeBtn('2')">
+                        <div class="aui-list-item-title">
+                            <img src="../../assets/image/qb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                            <span style="line-height: 1.5rem;">钱包支付</span> （余额 ￥ {{getOrderSet.wallet}}）
+                        </div>
+                        <div class="aui-list-item-right">
+                            <input type="radio" class="aui-radio" name="paymode" value="2" v-model="paymode">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="aui-list aui-list-custom aui-margin-t-15">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-pull-left">
+                            订购商品清单
+                        </div>
+                        <div class="aui-pull-right cgray9 aui-margin-r-15">{{addorder_proinfo.selectedList.length}} 款商品</div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="aui-list aui-media-list aui-padded-10">
+                <li class="aui-list-item" style="position: relative;" v-for="goodsitem in addorder_proinfo.selectedList">
+                    <!-- <label style="position: absolute;top:50%; left:0.25rem;margin-top:-0.65rem;">
+                    <input class="aui-radio" type="radio" name="radio" checked>
+                </label> -->
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-media" v-on:click="goods_detailbtn(goodsitem)">
+                            <img src="../../assets/image/load-img.png" v-if="goodsitem.imgurl==''">
+                            <img :src="goodsitem.imgurl" v-else>
+                        </div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-text" v-on:click="goods_detailbtn(goodsitem)">
+                                <div class="aui-list-item-title" v-text="goodsitem.name">爱玛淑女电动车头盔</div>
+                            </div>
+                            <div class="aui-list-item-text aui-margin-t-15">
+                                <div class="aui-pull-right" v-if="goodsitem.standard1">
+                                    <div class="fl aui-btn aui-margin-b-5 aui-margin-r-10 border active" v-text="goodsitem.standard1">红色</div>
+                                </div>
+                                <div class="aui-pull-right">
+                                    <span class="price aui-padded-r-10" v-text="goodsitem.price | currency '¥' '2' ">￥4500</span> x <span class="corange" v-text="goodsitem.count"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <footer class="aui-bar aui-bar-tab aui-padded-10">
+            <div class="aui-col-xs-6">
+                <div class="aui-pull-left aui-margin-r-10">
+                    <span>合计：</span>
+                    <span class="" v-text="totalprice | currency '¥' '2' ">￥0.00</span>
+                </div>
+            </div>
+            <div class="aui-col-xs-6">
+                <div class="aui-btn aui-btn-info aui-pull-right" style="width:5rem;" onclick="saveBtn()">下单</div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="js/createorder.js"></script>

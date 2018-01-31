@@ -1,0 +1,7 @@
+.aui-list label{
+    line-height:1.4rem;
+}
+.aui-radio, .aui-checkbox{
+    width:0.8rem;
+    height:0.8rem;
+}

@@ -1,0 +1,9 @@
+.aui-list .aui-list-item-right, .aui-list-item-title-row em{
+    max-width: 70%;
+}
+.aui-list .aui-list-item{
+    background-size: 95% 1px;
+}
+.aui-list .aui-list-item-title{
+    font-size: 0.7rem;
+}

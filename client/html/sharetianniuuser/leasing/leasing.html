@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>天牛网</title>
+    <link rel="stylesheet" type="text/css" href="css/aui.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/leasing.css">
+</head>
+
+<body id="app-register-form">
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <!-- <span class="aui-iconfont aui-icon-left"></span> -->
+        </a>
+        <div class="aui-title">天牛网</div>
+    </header>
+    <div class="aui-content aui-padded-15" style="background: #7ec32f;">
+        <div class="block-logo">
+            <img src="images/logo_03.png" style="margin:0 auto;">
+        </div>
+        <h3 class="aui-text-center aui-text-white aui-margin-t-15">欢迎使用天牛网电池租赁服务</h3>
+        <div class="aui-margin-t-15 aui-padded-10 block-item">
+            <div class="aui-padded-10">
+                <img src="images/abouttn_03.png" style="width: 1.2rem;margin:0 auto;">
+                <h3 class="aui-text-center tngreen">关于天牛</h3>
+            </div>
+            <div class="black">业务说明文字业务说明文字业务说明文字业务说明文字业务说明文字业务说明文字业务说明文字 业务说明文字业务说明文字业务说明文字业务说明文字业务说明文字。
+            </div>
+        </div>
+        <div class="aui-margin-t-15 aui-padded-10 block-item">
+            <div class="aui-padded-10">
+                <img src="images/cpys_03.png" style="width: 1.2rem;margin:0 auto;">
+                <h3 class="aui-text-center tngreen">产品优势</h3>
+            </div>
+            <div class="black">
+                <p>• 全新高性能锂电池终身使用</p>
+                <p>• 满电电池随时更换，让你永不断电</p>
+                <p>• 租期灵活，押金秒退</p>
+            </div>
+        </div>
+        <div class="aui-margin-t-15 block-tk" style="position: relative;">
+            <div>
+                <img src="images/more_07.png" style="width:100%;">
+            </div>
+            <div class="aui-padded-15" style="position: absolute;top:10%;width:100%;">
+                <img src="images/xian_05.png" class="aui-pull-left" style="width: 1rem;">
+                <img src="images/xian_05.png" class="aui-pull-right" style="width: 1rem;">
+            </div>
+            <div class="aui-margin-t-15 block-item aui-padded-t-15 aui-padded-b-15">
+                <ul class="aui-list aui-form-list">
+                    <li class="aui-list-item aui-margin-t-15" style="margin-bottom:0.5rem;">
+                        <div class="block-title">手机号码</div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="tel" maxlength="11" placeholder="请输入您的手机号" v-model="mobile">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="block-title">手机验证</div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="number" placeholder="请输入6位短信验证码" v-model="smsCode">
+                            </div>
+                            <div class="">
+                                <input type="text" readonly="" class="aui-btn aui-margin-r-10 aui-btn-info sendsmsBtn hqyzm" style="width:4rem;" value="点击获取" v-model="sendsbtnst" v-on:click="sendsmsBtn()">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="block-title">设定密码</div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="password" placeholder="请输入6-14位密码" v-model="password" v-on:change="passwordvalBtn">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="block-title">确认密码</div>
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="password" placeholder="再次确认密码" v-model="asspassword" v-on:change="asspasswordBtn">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top:2rem;">
+            <div class="aui-content-padded">
+                <p>
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" v-on:click="registerBtn()">
+                        <span class="aui-pull-left">•</span>提交<span class="aui-pull-right">•</span>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="js/leasing.js"></script>

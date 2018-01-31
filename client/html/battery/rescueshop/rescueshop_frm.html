@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>选择预约门店</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/rescueshop.css">
+</head>
+
+<body id="rescueshop-frm">
+<div class="aui-content">
+    <ul class="aui-list aui-media-list aui-list-noborder">
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width: 4rem;">
+                    <img :src="selectShop_data.photo?selectShop_data.photo:'images/gril.jpg'" class="aui-img-round" >
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-14">
+                        <span v-text="selectShop_data.name">小李快修 电动车服务店</span>
+                        </div>
+                        <!-- <div class="aui-list-item-right">
+                        {{selectShop_data.score}} 星
+                        </div> -->
+                    </div>
+                    <div class="aui-list-item-text">
+                        天牛网授权店 {{selectShop_data.no}}
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-14" v-text="alladdress">
+                        </div>
+                    </div>
+                    <div class="aui-list-item-text price">
+                        距离 {{shopdistance}} 公里
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item border-dotted">
+            <div class="aui-list-item-inner">
+                <ul class="aui-padded-15 aui-row" style="width:100%;">
+                    <li class="aui-col-xs-6 aui-padded-5" @click="settelsBtn">
+                        <div class="aui-text-center price">
+                            <div class="block-around">
+                                <i class="aui-iconfont aui-icon-phone" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <div class="aui-margin-t-5">电话沟通</div>
+                        </div>
+                    </li>
+                    <li class="aui-col-xs-6 aui-padded-5" @click="userbmapxyBtn">
+                        <div class="aui-text-center price">
+                            <div class="block-around">
+                                <i class="aui-iconfont aui-icon-location" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <div class="aui-margin-t-5">店铺位置</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <div class="aui-content aui-padded-15">
+        <h3 class="aui-text-center">救援说明</h3>
+        <p class="aui-margin-t-10">1. 提交救援单前，请与网点沟通故障情况，以便救援人员携带对应设备、配件进行救援。</p>
+        <p class="aui-margin-t-10">2. 提交救援单前，请与网点沟通救援服务价格，并在完成救援后与服务人员按价结算。</p>
+        <p class="aui-margin-t-10">3. 提交救援单时，会根据您当前与救援网点的距离结算标准的服务费用，若网点除救援费之外加收路费等，请拒绝支付。</p>
+    </div>
+</div>
+<footer class="aui-bar aui-bar-tab">
+    <div class="aui-bar-tab-item aui-text-left aui-padded-15" tapmode style="width: auto;">
+        <p>救援交通费：
+        <span class="price" v-text="(selectShop_data.rescuePrice*shopdistance) | currency '¥ ' '1'">￥8.5</span>
+        </p>
+    </div>
+    <div class="aui-bar-tab-item " tapmode style="width: 6rem; background: #7ec32f; color:#fff;" @click="addrescueBtn">提交救援单</div>
+</footer>
+</body>
+
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/rescueshop.js"></script>
+</html>
+

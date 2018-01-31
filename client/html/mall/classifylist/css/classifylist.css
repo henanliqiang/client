@@ -1,0 +1,40 @@
+.block-item {
+    width: 44%;
+    height: 13.5rem;
+    background: #fff;
+    margin-left: 4%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.aui-tab-item.aui-active{
+    color:#7ec32f;
+    border-bottom:2px solid #7ec32f;
+}
+.up {
+    position: absolute;
+    top: -0.3rem;
+    right: 1.75rem;
+    display: block;
+    height: 0.75rem;
+    width: 0.75rem;
+    color: #888;
+    font-size: 0.45rem;
+}
+
+.down {
+    position: absolute;
+    top: 0.3rem;
+    right: 1.75rem;
+    display: block;
+    height: 0.75rem;
+    width: 0.75rem;
+    font-size: 0.45rem;
+}
+
+.arrow-active {
+    color: #7ec32f;
+}
+
+.arrow-noactive {
+    color: #888;
+}

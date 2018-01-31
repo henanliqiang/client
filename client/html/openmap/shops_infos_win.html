@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+<style>
+     body {
+        /*background: transparent;*/
+        background: rgba(0, 0, 0, .40);
+        padding: 0;
+        margin: 0;
+        padding-top: 30px;
+    }
+</style>
+</head>
+
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-nav hidden " id="aui-header">
+
+    </header>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+    <script type="text/javascript" src="../assets/js/common.js"></script>
+<script>
+// 加载主题页面
+apiready = function() {
+    apps.loadWinUrl('shops_infos_frm', 'openmap/shops_infos_frm.html',{ shopid: api.pageParam.shopid });
+    // 后退键 - 安卓
+    // m.keyback = function() {
+
+}
+</script>

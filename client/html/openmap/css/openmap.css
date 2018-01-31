@@ -1,0 +1,52 @@
+.num{
+    color:#505050;
+    text-align: center;
+    line-height: 1.42rem;
+    height:1.4rem;
+    width:1.4rem;
+    border-radius: 0.7rem;
+    background: #dfdfdf;
+}
+.num-active{
+    color:#7ec32f;
+    text-align: center;
+    line-height: 1.42rem;
+    height:1.4rem;
+    width:1.4rem;
+    border-radius: 0.7rem;
+    border:1px solid #7ec32f;
+}
+.block-flex{
+    width:20rem;
+    margin: 0 auto;
+}
+.block-item{
+    background: url("../images/noclick-bj_03.png") no-repeat;
+    background-size: 100% 100%;
+    width:60%;
+    height:3rem;
+    color:#505050;
+    text-align: center;
+    line-height: 3rem;
+}
+.block-item-click{
+    background: url("../images/click-bj_03.png") no-repeat;
+    background-size: 100% 100%;
+    width:60%;
+    height:3rem;
+    color:#fff;
+    text-align: center;
+    line-height: 3rem;
+}
+.block-item-success{
+    background: url("../images/success-bj_03.png") no-repeat;
+    background-size: 100% 100%;
+    width:60%;
+    height:3rem;
+    color:#fff;
+    text-align: center;
+    line-height: 3rem;
+}
+.aui-list .aui-list-item-title{
+    font-size: 0.7rem;
+}

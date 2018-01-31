@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/my.css">
+	<link rel="stylesheet" type="text/css" href="css/firstadd.css">
+    <link rel="stylesheet" type="text/css" href="../../fonts/stylesheet.css" />
+    <style type="text/css">
+    .text-white {
+        color: #ffffff !important;
+    }
+
+    .aui-grid [class*=aui-col-] {
+        padding: 0.75rem 0;
+    }
+    </style>
+</head>
+
+<body id="mywin-frm">
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <div class="aui-title">我的</div>
+        <a class="aui-btn aui-pull-right" tapmode onclick="jumpUrl.settings()">
+            <span class="aui-iconfont aui-icon-gear"></span>&nbsp;设置
+        </a>
+    </header>
+    <!-- 顶部 -->
+    <div class="aui-content" id="user-info">
+        <div class="aui-padded-15 aui-media-list aui-list-noborder my-bj">
+            <div class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width:5rem;" tapmode onclick="jumpUrl.settings()">
+                        <img :src="shopUserInfodata.headportrait?shopUserInfodata.headportrait:'images/tx_03.png'" class="aui-img-round" style="width:5rem;height:5rem;border-radius:50%;">
+                    </div>
+                    <div class="aui-list-item-inner aui-margin-l-5">
+                        <div class="aui-list-item-text text-white aui-font-size-18" style="line-height: 4rem;" v-text="shopUserInfodata.nickname?shopUserInfodata.nickname:'天牛用户'">天牛之巅</div>
+					</div>
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm recharge" onclick="jumpUrl.rechargetianniu()">
+                        <span class="aui-pull-left">•</span>充值天牛币<span class="aui-pull-right">•</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="aui-padded-t-5 aui-padded-b-5 aui-row" style="background:#62b701;text-align:center;border-top:1px solid #fff;color:#fff; ">
+        <a class="aui-col-xs-6 aui-text-white" style="box-shadow:1px 0px 0px #fff;" onclick="jumpUrl.wallet()">
+            <div><i class="iconfonts icon-qianbao" style="margin-top: -0.1rem;font-size:0.9rem;margin-right:0.2rem;vertical-align: middle;"></i>钱包</div>
+            <div><span class="corange" v-text="balancewallet.wallet | currency '¥ ' '2' ">￥0.00</span></div>
+        </a>
+        <!-- onclick="jumpUrl.tncoin()" -->
+        <div class="aui-col-xs-6" onclick="jumpUrl.tncoin()">
+            <div><i class="iconfonts icon-jinbi" style="margin-top: -0.1rem;font-size: 0.9rem; margin-right:0.2rem;vertical-align: middle;"></i>天牛币</div>
+            <div><span class="corange" v-text="balanceintegral.integral">100</span></div>
+        </div>
+    </div>
+    <div class="aui-content aui-grid aui-margin-b-15 aui-margin-t-15">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item">
+                <a class="aui-list-item-inner aui-list-item-arrow" @click="getmybatteryBtn">
+                    <div class="aui-list-item-title">电池</div>
+                    <div class="aui-pull-right price"><span v-text="mybattrytxt">正在使用</span></div>
+                </a>
+            </li>
+        </ul>
+        <div class="aui-row" style="border-top:1px solid #eee; ">
+            <a class="aui-col-xs-4 aui-border-r" onclick="jumpUrl.foregift()">
+                <img src="images/dcyj_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">电池押金</div>
+            </a>
+            <a class="aui-col-xs-4 aui-border-r" onclick="jumpUrl.leaseterm()">
+                <img src="images/zq_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">租期</div>
+            </a>
+            <a class="aui-col-xs-4" onclick="jumpUrl.record()">
+                <img src="images/yyjl_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">预约记录</div>
+            </a>
+        </div>
+    </div>
+    <section class="aui-content aui-grid aui-margin-b-15">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item">
+                <a class="aui-list-item-inner aui-list-item-arrow" onclick="jumpUrl.orderlist({tabbtnnumjx:''})">
+                    <div class="aui-list-item-title">订单</div>
+                </a>
+            </li>
+        </ul>
+        <div class="aui-row" style="border-top:1px solid #eee; ">
+            <div class="aui-col-xs-3 aui-border-r" onclick="jumpUrl.orderlist({tabbtnnumjx:3})">
+                <img src="images/dfk_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">待付款</div>
+            </div>
+            <div class="aui-col-xs-3 aui-border-r" onclick="jumpUrl.orderlist({tabbtnnumjx:0})">
+                <img src="images/dfh_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">待发货</div>
+            </div>
+            <div class="aui-col-xs-3 aui-border-r" onclick="jumpUrl.orderlist({tabbtnnumjx:1})">
+                <img src="images/yfh_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">已发货</div>
+            </div>
+            <div class="aui-col-xs-3" onclick="jumpUrl.orderlist({tabbtnnumjx:2})">
+                <img src="images/ywc_03.png" style="width:1.5rem;margin:0 auto;">
+                <div class="aui-gird-lable aui-font-size-12">已完成</div>
+            </div>
+        </div>
+    </section>
+    <div class="aui-content">
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+            <li class="aui-list-item" onclick="jumpUrl.rescuelist()">
+                <a class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title">救援单</div>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+            <li class="aui-list-item" onclick="jumpUrl.addressmanage()">
+                <a class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title">管理收货地址</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+           <li class="aui-list-item" onclick="jumpUrl.collect()">
+               <a class="aui-list-item-inner aui-list-item-arrow">
+                   <div class="aui-list-item-title">收藏商品</div>
+               </a>
+           </li>
+       </ul>
+        <ul class="aui-list aui-list-in aui-margin-b-15">
+            <li class="aui-list-item" style="border-bottom:1px solid #f0f0f0;" onclick="clear_cache()">
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title">清空缓存</div>
+                </div>
+            </li>
+            <li class="aui-list-item" onclick="jumpUrl.abouttianniu()">
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-title">关于天牛网</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/my_win.js"></script>

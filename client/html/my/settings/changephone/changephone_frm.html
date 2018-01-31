@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>更换手机</title>
+    <link rel="stylesheet" type="text/css"  href="../../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css"  href="../../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css"  href="css/changephone.css">
+</head>
+<body>
+<div class="aui-content" id="changemob-frm">
+    <div class="aui-content" style="margin-top:1rem;">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item aui-margin-t-15 aui-margin-b-10">
+                <div class="block-title">更改手机</div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-input aui-margin-l-5">
+                        <input type="text" placeholder="请输入新手机号" v-model="mobile">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="block-title">验证码</div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-input aui-margin-l-5">
+                        <input type="text" placeholder="请输入6位验证码" v-model="smsCode">
+                    </div>
+                    <!-- <div class="hqyzm">获取验证码</div> -->
+                     <input type="text" readonly="" class="aui-btn aui-margin-r-10 aui-btn-info sendsmsBtn" style="width:4rem;" value="点击获取" v-model="sendsbtnst" v-on:click="sendsmsBtn">
+                </div>
+            </li>
+        </ul>
+        <div style="margin-top:2rem;">
+            <div class="aui-content-padded">
+
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" v-on:click="validatePhoneBtn">
+                    <span class="aui-pull-left">•</span>确认更换<span class="aui-pull-right">•</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../../assets/js/global/aes.min.js"></script>
+<script type="text/javascript" src="../../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/changephone.js"></script>

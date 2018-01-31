@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/js/layer_mobile/layer.css" />
+    <link rel="stylesheet" type="text/css" href="css/recorddetail.css">
+    <style>
+    .gray {
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+
+        filter: grayscale(100%);
+
+        filter: gray;
+    }
+
+    #half-demo {
+        width: 266px !important;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+
+    #half-demo img {
+        display: initial;
+    }
+    </style>
+</head>
+
+<body id="appointinfo-frm">
+    <div class="aui-content" style="position: relative">
+        <div style="position: absolute;top:1rem; width: 100%;z-index: 9999;">
+            <img src="images/azyy-logo_03.png" style="width: 2.5rem;margin: 0 auto;">
+        </div>
+        <ul class="aui-list aui-list-noborder aui-margin-l-15 aui-margin-r-15 aui-margin-b-15 aui-padded-l-15 aui-padded-r-15 aui-padded-t-15" style="margin-top:2.3rem;border-radius: 1rem;">
+            <div class="aui-row aui-padded-15 aui-font-size-14">
+                <div class="aui-text-center" style="width: 100%;">
+                    <!-- type:"预约类型 0：安装 1：更换 2：退租", -->
+                    <span>电池<span v-if="selectAppointInfo.type==0">安装</span>
+                    <span v-if="selectAppointInfo.type==1">更换</span><span v-if="selectAppointInfo.type==2">退租</span>预约
+                    </span>
+                </div>
+                <div class="aui-text-center" style="width: 100%;">
+                    <span>预约编号：</span><span v-text="selectAppointInfo.no">TF0000</span>
+                </div>
+                <div class="aui-margin-t-5" style="width:12rem;margin:0 auto;font-size: 0.7rem;" v-if="selectAppointInfo.state==0">
+                    <img src="images/sl_07.png" style="width: 1rem;" class="aui-pull-left">
+                    <span class="aui-pull-left aui-margin-l-5">
+                            <span v-else>
+                                <span v-text="afterMinTimes">4小时28分后失效</span> 后失效
+                    </span>
+                    </span>
+                </div>
+                <div class="aui-margin-t-5" style="width:6rem;margin:0 auto;" v-else>
+                    <img src="images/sl_07.png" style="width: 1rem;" class="aui-pull-left">
+                    <span class="aui-pull-left aui-margin-l-5">
+                        <span class="price">
+                        <!-- 0：预约中 2：过期 3：已取消 4：型号不符 5：电池报损处理中 6：电池已损坏", -->
+                    <span v-if="selectAppointInfo.state==1">预约已完成</span>
+                    <span v-if="selectAppointInfo.state==2">预约已过期</span>
+                    <span v-if="selectAppointInfo.state==3">预约已撤销</span>
+                    <span v-if="selectAppointInfo.state==4">电池型号不符</span>
+                    <span v-if="selectAppointInfo.state==5">电池报损处理中</span>
+                    <span v-if="selectAppointInfo.state==6">电池已损坏</span>
+                    <span v-if="selectAppointInfo.state==7">电池未损坏</span>
+                    </span>
+                    </span>
+                </div>
+            </div>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">下单时间</div>
+                    <div class="aui-list-item-right"><span v-text="selectAppointInfo.addtime">2017-08-21 12:00</span></div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-padded-t-15 aui-padded-b-15">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">预约门店</div>
+                    <div class="aui-list-item-right aui-text-right" style="max-width: 80%;">
+                        <div class="aui-text-overflow">
+                            <span v-text="selectAppointInfo.name">电动车服务店</span>
+                            <span>（</span>
+                            <span v-text="selectAppointInfo.shopno">Z0038</span>
+                            <span>）</span>
+                        </div>
+                        <div><span v-text="shopsAddress">郑州市金水区农业南路11号商鼎中心B区</span></div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">预约状态</div>
+                    <div class="aui-list-item-right price" v-if="selectAppointInfo.state==0">
+                        <span v-if="selectAppointInfo.type==0">等待安装电池</span>
+                        <span v-if="selectAppointInfo.type==1">等待更换电池</span>
+                        <span v-if="selectAppointInfo.type==2">等待退租电池</span>
+                    </div>
+                    <div class="aui-list-item-right price" v-else>
+                        <!-- 0：预约中 2：过期 3：已取消 4：型号不符 5：电池报损处理中 6：电池已损坏", -->
+                        <span v-if="selectAppointInfo.state==1">预约已完成</span>
+                        <span v-if="selectAppointInfo.state==2">预约已过期</span>
+                        <span v-if="selectAppointInfo.state==3">预约已撤销</span>
+                        <span v-if="selectAppointInfo.state==4">电池型号不符</span>
+                        <span v-if="selectAppointInfo.state==5">电池报损处理中</span>
+                        <span v-if="selectAppointInfo.state==6">电池已损坏</span>
+                        <span v-if="selectAppointInfo.state==7">电池未损坏</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">安装电池型号</div>
+                    <div class="aui-list-item-right">
+                        <span v-text="selectAppointInfo.batteryname">6020</span>
+                        <span v-text="selectAppointInfo.groupnum">1</span>组
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item" style="background-image: none;border-bottom: none;">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">预约方式</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" style="min-height:6rem">
+                    <ul class="aui-padded-5 aui-row" style="width:100%;" v-show="selectAppointInfo.state == 0">
+                        <li class="aui-col-xs-6">
+                            <div id="qrcode" style="width: 6rem;height: 6rem;margin:0 auto;" @click="qrcodebigImg">
+                                <!-- <img src="images/cxyy_03.png" style="width: 6rem;margin:0 auto;"> -->
+                            </div>
+                            <p class="aui-margin-t-15 aui-text-center" id="qrcode222">本订单二维码到店出示</p>
+                        </li>
+                        <li class="aui-col-xs-6">
+                            <div style="width: 6rem;height:6rem;margin:0 auto;overflow:hidden;">
+                                <div class="aui-btn-primary aui-text-center aui-font-size-14" style="margin-top:2.5rem;height:2rem;line-height:2rem;">
+                                    <span v-text="selectAppointInfo.identcode">S55844F</span> </div>
+                            </div>
+                            <p class="aui-margin-t-15 aui-text-center">本订单验证码到店提供</p>
+                        </li>
+                    </ul>
+                    <div class="aui-text-center" style="width:100%;" v-show="selectAppointInfo.state != 0">二维码与验证码已失效</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title" v-if="selectAppointInfo.state==0">请在预约时间内到店，超时预约无效，需重新预约</div>
+                    <div class="aui-list-item-title" v-if="selectAppointInfo.state==2">预约已过期，请重新提交预约</div>
+                    <div class="aui-list-item-title" v-if="selectAppointInfo.state==4">您的电池型号不符，无法提供服务</div>
+                    <div class="aui-list-item-title" v-if="selectAppointInfo.state==5">请等待报损结果</div>
+                    <div class="aui-list-item-title" v-if="selectAppointInfo.state==6" onclick="jumpUrl.badbatterysucess({appoinid:vm.selectAppointInfo.id,lossimg:vm.selectAppointInfo.lossimg,finishtime:vm.selectAppointInfo.finishtime});"> <span>您的电池已确认损坏，各类预约服务已终止</span><span class="aui-btn aui-btn-danger">查看详情</span></div>
+                </div>
+            </li>
+            <!-- 评分 -->
+            <li class="aui-padded-15" style="border-bottom:1px solid #f0f0f0;" v-if="selectAppointInfo.state==1 && selectAppointInfo.isevaluate==0">
+                <div class="aui-margin-5">本次服务评分（评分可得5积分）：</div>
+                <div id="half-demo"></div>
+                <div class="aui-text-center aui-padded-10">本次评分: <span v-text="hintscore">5</span> 分</div>
+                <div class="aui-btn-primary aui-text-center aui-font-size-14" @click="hintscoreBtn" style="height:2rem;line-height:2rem;width:60%;margin:0 auto;">
+                    确定评分 </div>
+            </li>
+            <li class="aui-list-item" v-else>
+                <div class="aui-list-item-inner">
+                    <ul class="aui-padded-15 aui-row" style="width:100%;">
+                        <li class="aui-col-xs-6 aui-padded-15" style="box-shadow: 1px 0px 0px #c0c0c0;">
+                            <div style="width: 5rem;margin:0 auto;line-height:1.5rem;" v-if="selectAppointInfo.state==2" @click="battery_bespeakBtn">
+                                <img src="images/dhdd_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-5">
+                                <span>重新预约</span>
+                            </div>
+                            <div style="width: 5rem;margin:0 auto;line-height:1.5rem;" v-else @click="waymap_NavigationBtn">
+                                <img src="images/dhdd_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-5">
+                                <span class="gray">导航到店</span>
+                            </div>
+                        </li>
+                        <li class="aui-col-xs-6 aui-padded-15">
+                            <div style="width: 5rem;margin:0 auto;line-height:1.5rem;" @click="undoService" v-if="selectAppointInfo.state==0 || selectAppointInfo.state==2 || selectAppointInfo.state==4|| selectAppointInfo.state==7">
+                                <img src="images/cxyy_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-5">
+                                <span>撤销预约</span>
+                            </div>
+                            <div style="width: 5rem;margin:0 auto;line-height:1.5rem;" v-else>
+                                <img src="images/cxyy_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-5 gray">
+                                <span class="grey">撤销预约</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- 大图二维码 -->
+        <div class="aui-hide" id="qrcodeBig">
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/makeqrcode.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/appointinfo.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/js/jquery.raty.min.js"></script>

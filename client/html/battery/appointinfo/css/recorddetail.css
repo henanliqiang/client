@@ -1,0 +1,14 @@
+.aui-list .aui-list-item{
+    padding-left: 0;
+}
+.aui-list .aui-list-item-title{
+    font-size: 0.7rem;
+}
+.aui-list .aui-list-item-inner{
+    padding-right: 0;
+    font-size: 0.7rem;
+}
+.aui-list .aui-list-item-right{
+    max-width:70%;
+    font-size: 0.7rem;
+}

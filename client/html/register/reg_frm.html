@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+</head>
+
+<body>
+    <div id="app-register-form">
+        <div class="aui-content">
+            <div class="block-logo">
+                <img src="images/logo_03.png" style="margin:0 auto;">
+            </div>
+            <div class="aui-content">
+                <ul class="aui-list aui-form-list aui-padded-b-15 aui-padded-t-15">
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label-icon">
+                                <img src="images/person_03.png" style="width:1.2rem;">
+                            </div>
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="tel" maxlength="11" placeholder="请输入您的手机号" v-model="mobile">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label-icon">
+                                <img src="images/yzm_03.png" style="width:1.2rem;">
+                            </div>
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="number" placeholder="请输入短信验证码" v-model="smsCode">
+                            </div>
+                            <div class="">
+                                <input type="text" readonly="" class="aui-btn aui-margin-r-10 aui-btn-info sendsmsBtn hqyzm" style="width:4rem;" value="点击获取" v-model="sendsbtnst" v-on:click="sendsmsBtn()">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label-icon">
+                                <img src="images/szmm_03.png" style="width:1.2rem;">
+                            </div>
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="password" placeholder="请输入6-14位密码" v-model="password" v-on:change="passwordvalBtn">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label-icon">
+                                <img src="images/qrmm_03.png" style="width:1.2rem;">
+                            </div>
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="password" placeholder="再次确认密码" v-model="asspassword" v-on:change="asspasswordBtn">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                        <div class="aui-list-item-inner">
+                            <div class="aui-list-item-label-icon">
+                                <img src="images/qrmm_03.png" style="width:1.2rem;">
+                            </div>
+                            <div class="aui-list-item-input aui-margin-l-5">
+                                <input type="password" placeholder="（选填）推荐人手机，双方可获得馈赠天牛币" v-model="referee">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="aui-content-padded aui-margin-t-15">
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" v-on:click="registerBtn()" v-if="agressredtxt">
+                        <span class="aui-pull-left">•</span>注册<span class="aui-pull-right">•</span>
+                    </div>
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm aui-btn-disable" v-else>
+                        <span class="aui-pull-left">•</span>注册<span class="aui-pull-right">•</span>
+                    </div>
+                </div>
+                <div class="aui-content-padded aui-margin-t-15">
+                    <label>
+                        <input class="aui-checkbox" type="checkbox" name="agressredtxt" v-model="agressredtxt"> 我已阅读并同意
+                    </label>
+                    <span class="aui-text-info" onclick="jumpUrl.agreement()">《天牛网服务条款》</span>
+                </div>
+            </div>
+            <div class="block-bj">
+                <img src="images/login-bj_03.png" style="margin:0 auto;">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../assets/js/global/aes.min.js"></script>
+<script type="text/javascript" src="../register/register.js"></script>

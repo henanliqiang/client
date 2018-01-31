@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>提现记录</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/cashregister.css">
+</head>
+
+<body id="cashregister-frm" v-cloak>
+    <div class="aui-content aui-margin-b-15">
+    <!--  <ul class="aui-list aui-margin-t-15" v-if="BatteryOrder_data.batteryOrderList.length<1">
+           <li class="aui-list-item">
+               <div class="aui-list-item-inner">
+                   <div class="" style="line-height: 1rem;text-align: center;">
+                       暂无记录
+                   </div>
+               </div>
+           </li>
+       </ul> -->
+        <ul class="aui-list aui-media-list">
+            <li class="aui-list-item aui-margin-b-15" v-for="item in BatteryOrder_data.batteryOrderList">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title"><span v-text="item.addtime">2017-08-21 12:00</span></div>
+                            <div class="aui-list-item-right">
+                                <img src="images/loading.png" class="fl aui-margin-r-5" style="width: 1rem;margin-top:0.25rem;">
+                                <span v-if="item.result==0">处理中</span>
+                                <span v-if="item.result==1">已完成</span>
+                                <span v-if="item.result==2">转账失败</span>
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            <div>
+                                <span>提现</span> ￥
+                                <span class="price" v-text="item.amount"> 1.5</span>
+                            </div>
+                            <div class="aui-list-item-right">
+                                <span v-if="item.type==0">支付宝账号：</span>
+                                <span v-if="item.type==1">微信账号：</span>
+                                <span v-text="item.accounts">liumingyi@163.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="aui-margin-10" style="height:30px;line-height: 30px;text-align: center;">
+            <span v-text="moredatatxt">暂无更多记录</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/cashregister.js"></script>
+</html>

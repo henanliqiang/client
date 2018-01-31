@@ -1,0 +1,262 @@
+@charset "UTF-8";
+
+html {
+    font-family: "Microsoft YaHei", Helvetica, sans-serif;
+    color: #222;
+    font-size: 1rem;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+
+/*导航栏*/
+
+.aui-bar-nav .aui-title {
+    right: 1rem;
+    left: 1rem;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.aui-btn-block.aui-btn-sm {
+    height: 2.2rem;
+    line-height: 2.3rem;
+    font-size: 0.9rem;
+}
+
+.aui-btn-primary {
+    background-color: #7ec32f;
+    border-radius: 1.1rem;
+    -webkit-box-shadow: 0rem 0.2rem 0.1rem #e2f9e2;
+    -moz-box-shadow: 0rem 0.2rem 0.1rem #e2f9e2;
+    box-shadow: 0rem 0.1rem 0.1rem #c0e4b9;
+}
+
+.aui-btn-disable {
+    background-color: #d6d6d6;
+    border-radius: 1.1rem;
+    -webkit-box-shadow: 0rem 0.2rem 0.1rem #e2f9e2;
+    -moz-box-shadow: 0rem 0.2rem 0.1rem #e2f9e2;
+    box-shadow: 0rem 0.1rem 0.1rem #c5c5c5;
+    color: #f3f3f3;
+}
+
+.aui-btn-primary.aui-active,
+.aui-btn-primary:active {
+    color: #ffffff;
+    background-color: #7ec32f;
+}
+
+a {
+    color: #404040;
+}
+
+.aui-input,
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 2.2rem;
+    line-height: normal;
+    color: #424242;
+    font-size: 0.8rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.aui-radio:checked,
+.aui-radio.aui-checked,
+.aui-checkbox:checked,
+.aui-checkbox.aui-checked {
+    background-color: #7ec32f;
+    border: solid 1px #7ec32f;
+    text-align: center;
+    background-clip: padding-box;
+}
+
+.aui-bar-nav {
+    background-color: #7ec32f;
+    color: #fff;
+}
+
+.aui-bar-nav .aui-btn .aui-iconfont {
+    color: #fff;
+}
+
+
+/* .aui-content-padded{
+    margin:0.5rem 2rem;
+} */
+
+
+/*颜色*/
+
+.tngreen {
+    color: #7ec32f;
+}
+
+.price {
+    color: #ff7010 !important;
+}
+
+.black {
+    color: #404040;
+}
+
+.aui-bar-tab .aui-active {
+    color: #7ec32f;
+}
+
+.grey {
+    color: #757575;
+}
+
+.aui-text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+
+/*表单应用*/
+
+.aui-list .aui-list-item-label {
+    width: 50%;
+    text-align: right;
+}
+
+.lable-formlist label {
+    width: 48%;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.lable-formlist label input {
+    margin-right: 5px;
+}
+/*图片变灰*/
+.img-gray {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+
+    filter: grayscale(100%);
+
+    filter: gray;
+}
+
+.aui-list .aui-list-item:active {
+    background-color: transparent;
+}

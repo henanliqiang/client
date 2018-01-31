@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>商城</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/mall.css">
+</head>
+
+<body id="appmall-index" v-cloak>
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="jumpUrl.classify()">
+        <span class="aui-iconfont aui-icon-menu"></span>
+    </a>
+        <div class="aui-title">
+            天牛商城
+            <!--  <div class="aui-searchbar" id="search" style="width:98%;">
+               <div class="aui-searchbar-input aui-border-radius" tapmode onclick="doSearch()">
+                   <img src="images/search_03.png" style="width:1rem;height:1rem;margin-top:0.15rem;margin-right:0.3rem;">
+                   <form action="javascript:search();">
+                       <input type="search" placeholder="请输入商品分类、关键字" id="search-input">
+                   </form>
+               </div>
+           </div> -->
+        </div>
+        <a class="aui-btn aui-pull-right aui-margin-r-10" tapmode onclick="jumpUrl.shoppingcart()">
+        <span class="aui-iconfont aui-icon-cart aui-font-size-18"></span>
+        <div class="aui-badge" v-text="topcartNum" style="left: 40%;" v-if="topcartNum>0">1</div>
+    </a>
+    </header>
+    <div class="aui-content" style="margin-bottom:2.25rem;">
+        <!-- 轮播图 -->
+        <div id="aui-slide" style="height:20rem;" v-if="advertList.length>0">
+            <div class="aui-slide-wrap">
+                <div class="aui-slide-node bg-dark" v-for="item in advertList" @click="goods_detailbtn(item)">
+                    <img v-bind:src="item.url?item.url:'images/l1.png'" />
+                </div>
+                <!--  <div class="aui-slide-node bg-dark">
+               <img src="images/l2.png" />
+           </div> -->
+            </div>
+            <div class="aui-slide-page-wrap">
+                <!--分页容器-->
+            </div>
+        </div>
+        <div class="aui-content">
+            <div class="aui-bar" style="width:5rem;padding:0.5rem 0; margin:0 auto;">
+                <img class="aui-pull-left" src="images/rm_03.png" style="width: 1rem;margin:0 auto;">
+                <span class="aui-pull-left aui-margin-l-5" style="font-size: 0.8rem;">热销商品</span>
+            </div>
+            <!-- <div class="aui-pull-left aui-margin-b-15 block-item" onclick="jumpUrl.goods_detail()">
+            <img src="images/item1_07.png" style="width:8.5rem;">
+            <div class="aui-grid-label aui-padded-10">
+                <div class="aui-ellipsis-2">艾玛淑女电动车头盔艾玛淑女电动车头盔艾玛淑女电动车头盔艾玛淑女电动车头盔艾玛淑女电动车头盔</div>
+                <div class="aui-margin-t-5 clearfix">
+                    <div class="aui-pull-left" style="width:70%;">
+                        <p class="price aui-font-size-16">￥1500</p>
+                        <p>已售97</p>
+                    </div>
+                    <div class="aui-pull-right">
+                        <img src="images/shoppingcar_03.png" style="width:1.5rem;margin-top:0.3rem;">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            <div class="" style="line-height: 1rem;text-align: center;" v-if="goodsSellingList.length<1">
+                暂无商品
+            </div>
+            <div class="aui-pull-left aui-margin-b-15 block-item" v-for="goodsitem in goodsSellingList" v-on:click="goods_detailbtn(goodsitem)">
+                <div style="height:8.5rem;overflow:hidden;border-bottom:1px solid #f0f0f0;">
+                    <img :src="goodsitem.imgurl?goodsitem.imgurl:'../assets/image/load-img.png'">
+                </div>
+                <div class="aui-grid-label aui-padded-10">
+                    <div class="aui-ellipsis-2" v-text="goodsitem.name" style="height:23px;">电动车头盔</div>
+                    <div class="aui-margin-t-10 aui-margin-b-10 clearfix">
+                        <div class="aui-pull-left" style="width:70%;">
+                            <p class="price aui-font-size-16" v-text="goodsitem.price | currency '¥ ' '2'">￥1500</p>
+                            <p>已售 <span v-text="goodsitem.goodscount"></span></p>
+                        </div>
+                        <div class="aui-pull-right">
+                            <img src="images/shoppingcar_03.png" style="width:1.5rem;margin-top:0.3rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="aui-btn aui-btn-danger aui-margin-15" onclick="jumpUrl.classifylist();">全部热销商品</div>
+        <div class="aui-content">
+            <div class="aui-bar" style="width:5rem;padding:0.5rem 0; margin:0 auto;">
+                <img class="aui-pull-left" src="images/rm_03.png" style="width: 1rem;margin:0 auto;">
+                <span class="aui-pull-left aui-margin-l-5" style="font-size: 0.8rem;">为你推荐</span>
+            </div>
+            <div class="" style="line-height: 1rem;text-align: center;" v-if="goodslist_data.goodsList.length<1">
+                暂无商品
+            </div>
+            <div class="aui-pull-left aui-margin-b-15 block-item" v-for="goodsitem in goodslist_data.goodsList" v-on:click="goods_detailbtn(goodsitem)">
+                <div style="height:8.5rem;overflow:hidden;border-bottom:1px solid #f0f0f0;">
+                    <img :src="goodsitem.imgurl?goodsitem.imgurl:'../assets/image/load-img.png'">
+                </div>
+                <div class="aui-grid-label aui-padded-10">
+                    <div class="aui-ellipsis-2" v-text="goodsitem.name" style="height:23px;">电动车头盔</div>
+                    <div class="aui-margin-t-10 aui-margin-b-10 clearfix">
+                        <div class="aui-pull-left" style="width:70%;">
+                            <p class="price aui-font-size-16" v-text="goodsitem.price | currency '¥ ' '2'">￥1500</p>
+                            <p>已售 <span v-text="goodsitem.goodscount"></span></p>
+                        </div>
+                        <div class="aui-pull-right">
+                            <img src="images/shoppingcar_03.png" style="width:1.5rem;margin-top:0.3rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+           <!--  <div class="aui-margin-10" style="text-align: center;">
+               <span v-text="moredatatxt">暂无记录</span>
+           </div> -->
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../assets/js/aui-slide.js"></script>
+<script type="text/javascript" src="js/mall.js"></script>
+<script type="text/javascript">
+</script>
+
+</html>

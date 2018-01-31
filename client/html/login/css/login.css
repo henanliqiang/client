@@ -1,0 +1,32 @@
+.block-logo{
+    padding:2.5rem 0;
+}
+.block-logo img{
+    width:5rem;
+}
+.block-bj{
+    padding:2rem 0;
+}
+.block-bj img{
+    width:8rem;
+}
+.aui-list{
+    margin:0 2rem;
+    background-image:none;
+    background-color:#f5f5f5;
+    border:none;
+}
+.aui-list .aui-list-item{
+    border:0.05rem solid #7ec32f;
+    border-radius: 0.5rem;
+    background-image:none;
+    padding-left:0.5rem;
+}
+.aui-list .aui-list-item-label-icon{
+    padding:0.3rem 0;
+    color:#5b5b5b;
+    border-right:1px dotted #7ec32f;
+}
+.aui-iconfont{
+    font-size:1rem;
+}

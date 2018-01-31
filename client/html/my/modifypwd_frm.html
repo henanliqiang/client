@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+</head>
+
+<body>
+    <div id="modifypwd-frm">
+        <div class="aui-content">
+            <ul class="aui-list aui-form-list aui-list-custom">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            当前密码
+                        </div>
+                        <div class="aui-list-item-input ">
+                            <input type="password" placeholder="点击输入" v-model="oldpwd">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            设定新密码
+                        </div>
+                        <div class="aui-list-item-input ">
+                            <input type="password" placeholder="8--16位连续数字、字母组合" v-model="newpwd">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            重输新密码
+                        </div>
+                        <div class="aui-list-item-input ">
+                            <input type="password" placeholder="8--16位连续数字、字母组合" v-model="confirmpwd">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="aui-padded-b-15">
+            <div class="aui-content-padded" v-on:click="saveBtn">
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm">
+                    <span class="aui-pull-left">•</span>提交<span class="aui-pull-right">•</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/aui-toast.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/global/aes.min.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/modifypwd.js"></script>

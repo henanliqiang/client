@@ -1,0 +1,21 @@
+.aui-list{
+    background-color: #f5f5f5;
+}
+.aui-list .aui-list-item{
+    background-color: #fff;
+}
+.aui-list .aui-list-item-right, .aui-list-item-title-row em{
+    max-width: 60%;
+}
+.item-block{
+    width: 30%;
+    margin-left:2.5%;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+}
+.item-block-active{
+    background:#7ec32f;
+}
+.item-block-active p{
+    color: #fff;
+ }

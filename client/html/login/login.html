@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css"  href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css"  href="../assets/css/main.css">
+    <link rel="stylesheet" type="text/css"  href="css/login.css">
+</head>
+<body>
+    <div class="aui-content">
+        <div class="block-logo">
+            <img src="images/logo_03.png" style="margin:0 auto;">
+        </div>
+        <div class="aui-content">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item" style="margin-bottom:0.5rem;">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label-icon">
+                            <img src="images/person_03.png" style="width:1.2rem;">
+                        </div>
+                        <div class="aui-list-item-input aui-margin-l-5">
+                            <input type="number" placeholder="请输入帐号" v-model="username">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label-icon">
+                            <img src="images/szmm_03.png" style="width:1.2rem;">
+                        </div>
+                        <div class="aui-list-item-input aui-margin-l-5">
+                            <input type="password" placeholder="请输入密码" v-model="password">
+
+                        </div>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <div class="aui-list-item-inner">
+                        <a class="aui-list-item-label-icon" onclick="jumpUrl.forget_pwd()" style="display:block;padding:0;border:none;">
+                            <i class="aui-iconfont aui-icon-question"></i>
+                            <span class="aui-padded-l-5">忘记密码</span>
+                        </a>
+                        <a class="aui-list-item-label-icon" onclick="jumpUrl.register()" style="display:block;color:#7ec32f;padding:0;border:none;">
+                            <i class="aui-iconfont aui-icon-pencil"></i>
+                            <span class="aui-padded-l-5">立即注册</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="aui-content-padded">
+                <p>
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" v-on:click="loginBtn">
+                    <span class="aui-pull-left">•</span>登录<span class="aui-pull-right">•</span>
+                </div>
+                </p>
+            </div>
+        </div>
+        <div class="block-bj">
+            <img src="images/login-bj_03.png" style="margin:0 auto;">
+        </div>
+    </div>
+</body>
+</html>

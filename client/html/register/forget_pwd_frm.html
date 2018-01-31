@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+</head>
+
+<body>
+    <div id="forget-pwd-frm">
+        <div class="aui-content">
+            <ul class="aui-list aui-form-list aui-list-custom">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            注册手机
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" placeholder="请输入您的手机号" v-model="mobile">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            短信验证
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" placeholder="请输入短信验证码" v-model="smsCode">
+                        </div>
+                        <input type="text" readonly="" class="aui-btn aui-margin-r-10 aui-btn-info sendsmsBtn" style="width:4rem;" value="点击获取" v-model="sendsbtnst" v-on:click="sendsmsBtn">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="aui-content-padded aui-margin-t-15" v-on:click="validatePhoneBtn">
+            <div class="aui-btn aui-btn-block aui-btn-sm aui-btn-info">验证手机</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/global/aes.min.js"></script>
+<script type="text/javascript" src="../register/forget_pwd.js"></script>

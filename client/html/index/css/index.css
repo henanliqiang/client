@@ -1,0 +1,101 @@
+.goods-price {
+    color: #f60;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.aui-bar {
+    z-index: 100000;
+}
+
+.aui-popup {
+    max-height: 11rem;
+    min-width: 7rem;
+    min-height: 2.2rem;
+    opacity: 1;
+    display: none;
+}
+
+.aui-popup-content {
+    overflow: auto;
+    min-height: 2.2rem;
+    /*height: 100%;*/
+    max-height: 11rem;
+}
+
+.aui-popup-top {
+    top: 2.25rem;
+}
+
+.aui-popup-content .aui-list-item {
+    width: 7rem;
+    line-height: 1.8rem;
+    min-height: 1.8rem;
+}
+
+.aui-popup-content .aui-list .aui-list-item-inner {
+    display: block !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+    line-height: 1.8rem;
+    min-height: 1.8rem;
+}
+
+.disabled-style {
+    color: #BDC3C7;
+}
+
+/*轮播图 str*/
+#aui-slide{
+    height:8rem !important;
+}
+.aui-slide-wrap {
+    /*height: 100%;*/
+    height: 8rem;
+    width: 100%;
+
+}
+.aui-slide-wrap .aui-slide-node {
+    width: 100%;
+    /*height: 100%;*/
+    height: 8rem;
+}
+.aui-slide-node img {
+    /*height: 8rem;*/
+    /*width: auto;*/
+    /*margin: 0 auto;*/
+    width: 100%;
+    height: auto;
+    min-height: 8rem;
+}
+
+.aui-slide-page-wrap {
+    z-index: 99;
+}
+/*轮播图 end*/
+
+/**/
+.swiper-container{
+    margin-top: 70px;
+    height:8rem !important;
+}
+.swiper-wrapper{
+
+}
+.swiper-slide {
+    height:8rem !important;
+    text-align: center;
+    overflow: hidden;
+}
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    min-height: 8rem;
+}
+/**/
+
+.aui-badge{
+    left: 43%;
+}

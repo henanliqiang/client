@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>购物车</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/shoppingcart.css">
+</head>
+
+<body id="app-carslist-form">
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-media-list aui-padded-10">
+            <li class="aui-list-item" style="position: relative;" v-for="goodsitem in goodslist_data.goodsList" v-if="goodslist_data.goodsList.length>0">
+                <!-- 单选 -->
+                <label class="aui-disable" style="position: absolute;top:50%; left:0.25rem;margin-top:-0.65rem;">
+                    <input class="aui-radio" type="checkbox" name="oneshopradio" :disabled="goodsitem.putway==0" :checked="chossshopsgoods.indexOf(goodsitem.id)>=0 && goodsitem.putway==1" @click='checkedOne(goodsitem)'>
+                </label>
+                <div class="aui-media-list-item-inner aui-margin-l-15">
+                    <div class="aui-list-item-media" v-on:click="goods_detailbtn(goodsitem)">
+                        <img src="../../assets/image/load-img.png" v-if="goodsitem.imgurl==''">
+                        <img :src="goodsitem.imgurl" v-else>
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text" v-on:click="goods_detailbtn(goodsitem)">
+                            <div class="aui-list-item-title" v-text="goodsitem.name">爱玛淑女电动车头盔</div>
+                            <div class="aui-list-item-right" v-on:click.stop="delete_to_cart($index,goodsitem)">
+                                <img src="images/del_03.png" style="width: 1.2rem;" />
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text aui-margin-t-15">
+                            <div class="aui-list-item-title">
+                                <span class="corange" v-text="goodsitem.price | currency '¥ ' '2' ">￥4500</span>
+                            </div>
+                            <div class="aui-list-item-right">
+                                <div class="aui-bar aui-bar-btn aui-bar-btn-sm" style="width:90%;float:right;">
+                                    <div class="aui-bar-btn-item" v-on:click.stop="cut_to_cart($index)">
+                                        <i class="aui-iconfont aui-icon-minus"></i>
+                                    </div>
+                                    <div class="aui-bar-btn-item">
+                                        <input class="aui-input aui-text-center" type="number" v-model="goodsitem.count" min="1" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" onfocus="if(this.value!=''){this.value=''}" onblur="if(this.value==''){this.value=1};if(this.value>={{(goodsdetail_data.stock)}}){this.value={{(goodsdetail_data.stock)}}};">
+                                    </div>
+                                    <div class="aui-bar-btn-item" v-on:click.stop="add_to_cart($index)">
+                                        <i class="aui-iconfont aui-icon-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text aui-margin-t-15" v-if="goodsitem.putway==0">
+                            <div class="aui-list-item-title">
+                                <span class="corange aui-btn ">此商品已下架</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aui-info" style="border-top: 1px dotted #ccc;">
+                    <div class="aui-info-item">
+                        <span class="aui-margin-l-5 price">
+                        小计： <span class="corange" v-text="(goodsitem.price)*(goodsitem.count) | currency '¥ ' '2' ">￥100</span>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item" style="position: relative;" v-if="goodslist_data.goodsList.length<1">
+                <!-- <label style="position: absolute;top:50%; left:0.25rem;margin-top:-0.65rem;">
+                    <input class="aui-radio" type="checkbox" name="radio" checked>
+                </label> -->
+                <div class="aui-text-center aui-margin-t-15">
+                    购物车为空，请选购商品...
+                </div>
+            </li>
+            <!-- <li class="aui-list-item" style="position: relative;">
+                <label style="position: absolute;top:50%; left:0.25rem;margin-top:-0.65rem;">
+                    <input class="aui-radio" type="checkbox" name="radio" checked>
+                </label>
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media">
+                        <img src="images/f1.jpg">
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">爱玛淑女电动车头盔</div>
+                            <div class="aui-list-item-right">
+                                <img src="images/del_03.png" style="width: 1.2rem;" />
+                            </div>
+                        </div>
+                        <div class="aui-list-item-text aui-margin-t-15">
+                            <div class="aui-list-item-title">￥150.00</div>
+                            <div class="aui-list-item-right">
+                                <div class="aui-bar aui-bar-btn aui-bar-btn-sm" style="width:90%;float:right;">
+                                    <div class="aui-bar-btn-item">
+                                        <i class="aui-iconfont aui-icon-minus"></i>
+                                    </div>
+                                    <div class="aui-bar-btn-item">
+                                        <input type="number" class="aui-input aui-text-center" value="1">
+                                    </div>
+                                    <div class="aui-bar-btn-item">
+                                        <i class="aui-iconfont aui-icon-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aui-info" style="border-top: 1px dotted #ccc;">
+                    <div class="aui-info-item">
+                        <span class="aui-margin-l-5 price">小计：190.00</span>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+    <footer class="aui-bar aui-bar-tab aui-padded-10">
+        <div class="aui-col-xs-4 aui-text-left aui-font-size-18">
+            <label style="">
+                <input class="aui-radio" type="checkbox" name="allshopsradio" :checked="isCheckedAll" @click="checkedAll"> 全选
+            </label>
+        </div>
+        <div class="aui-col-xs-8">
+            <div class="aui-pull-left aui-margin-r-10">
+                <span>总计：</span>
+                <span class="" v-text="totalprice | currency '¥' '2' ">￥0.00</span>
+            </div>
+            <div class="aui-btn aui-btn-info aui-pull-right" style="width:5rem;" v-on:click="create_order">下单</div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript " src="../../assets/js/api.js"></script>
+<script type="text/javascript " src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript " src="../../assets/js/common.js"></script>
+<script type="text/javascript " src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript " src="../assets/js/aui-lazyload.js"></script>
+<script type="text/javascript " src="js/car_frm.js"></script>
+
+</html>

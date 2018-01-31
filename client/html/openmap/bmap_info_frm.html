@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>状态栏</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/openmap.css">
+    <style type="text/css">
+    body {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+    }
+
+    .info {
+        background: rgba(255, 112, 16, .80);
+        box-shadow: 0px 5px 6px #ffd2ba;
+        color: #fff;
+        font-size: 14px;
+        height: 40px;
+        width: 92%;
+        border-radius: 6px;
+        margin: 0 auto;
+        line-height: 42px;
+        text-align: center;
+        position: relative;
+        z-index: 998;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="aui-ellipsis-1 info" id="info-frm" @click="jumpinfoPages">
+        <span v-text="map_txtinfo">定位中...</span>
+        <span class="aui-iconfont aui-icon-right aui-pull-right aui-margin-r-10" style="font-weight:bold;"></span>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/bmap_info_frm.js"></script>

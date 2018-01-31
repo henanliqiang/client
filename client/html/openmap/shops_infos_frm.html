@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>状态栏</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/insatall.css">
+    <link rel="stylesheet" type="text/css" href="../../fonts/stylesheet.css" />
+    <style type="text/css">
+    body {
+        /*background: transparent;*/
+        background: rgba(0, 0, 0, .40);
+        padding: 0;
+        margin: 0;
+        padding-top: 30px;
+    }
+
+    .info {
+        height: 100%;
+        width: 92%;
+        border-radius: 6px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 999;
+    }
+
+    .icon-close {
+        width: 2rem;
+        height: 2rem;
+        color: #404040;
+        line-height: 2rem;
+        text-align: center;
+        border-radius: 50%;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1.5rem;
+        border: 1px solid #404040;
+    }
+
+    .closeFrames {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+    #half-demo {
+        margin: 0 auto;
+        padding: 5px 0;
+    }
+
+    #half-demo img {
+        display: initial;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="aui-content info" id="shopsinfo-frm" v-cloak>
+        <!-- 无数据虚拟div -->
+        <ul class="aui-list aui-list-noborder" style="border-radius: 1rem;position:relative;" v-if="mrdivbox_stats">
+            <div class="closeFrames aui-pull-right" @click="close_shopInfo">
+                <i class="aui-iconfont aui-icon-close icon-close"></i>
+            </div>
+            <div style="width: 100%;">
+                <img src="images/azyy-logo_03.png" style="width: 2.5rem;margin: 0 auto;">
+            </div>
+            <div class="aui-row aui-padded-t-15 aui-padded-l-15 aui-padded-r-15">
+                <h2 class="aui-text-center" style="width: 100%;"><span>天牛电池</span></h2>
+            </div>
+            <!-- <div id="half-demo"></div> -->
+            <div class="aui-text-center aui-padded-5" style="background: #7ec32f;color: #fff;">
+                <span>预约赠送100积分：换电赠送100积分</span>
+            </div>
+            <li class="aui-list-item aui-margin-t-15" style="border-top: 1px solid #ddd;height:100px;overflow-y: auto;">
+                <div style="width:auto;">
+                    <ul class="aui-padded-t-10 aui-padded-b-10" style="height:5rem; display: flex;">
+                        <li class=" aui-padded-5 fl" style="width: 8rem;flex: 1;">
+                            <img src="../assets/image/load-img.png" width="100">
+                        </li>
+                        <li class=" aui-padded-5 fl" style="width: 8rem;">
+                            <img src="../assets/image/load-img.png" width="100">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">店铺位置</div>
+                    <div class="aui-list-item-right aui-padded-t-15 aui-padded-b-15">
+                        <span>店铺位置</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="callus(selectShopInfo.contactcellphone)">
+                    <div class="aui-list-item-title">联系电话</div>
+                    <div class="aui-list-item-right aui-text-right aui-padded-t-15 aui-padded-b-15">
+                        <span>联系电话</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">店铺介绍</div>
+                    <div class="aui-list-item-right aui-padded-t-15 aui-padded-b-15">
+                        <span>本店从事电池销售</span>
+                    </div>
+                </div>
+            </li>
+            <!-- 电池列表 -->
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <ul class="aui-padded-t-5 aui-row" style="width:100%;overflow:hidden;">
+                        <li class="aui-margin-l-15" style="width:80%;overflow:hidden;">
+                            <div class="aui-pull-left">
+                                <img src="images/dc_02.png" style="width: 2.5rem; margin: 10px 3px;">
+                            </div>
+                            <div class="aui-pull-left aui-margin-l-5" style="line-height:3rem;">
+                                <h4 class="aui-text-center">
+                                    <b >6020锂电</b>
+                                    <span class="aui-margin-l-15">库存：</span>
+                                    <span class="price">13</span>
+                                    <span class="aui-margin-l-15">满电：</span>
+                                    <span class="price">13</span>
+                                </h4>
+                            </div>
+                        </li>
+                        <li class="aui-margin-l-15" style="width:80%;overflow:hidden;">
+                            <div class="aui-pull-left">
+                                <img src="images/dc_02.png" style="width: 2.5rem; margin: 10px 3px;">
+                            </div>
+                            <div class="aui-pull-left aui-margin-l-5" style="line-height:3rem;">
+                                <h4 class="aui-text-center">
+                                    <b >6020锂电</b>
+                                    <span class="aui-margin-l-15">库存：</span>
+                                    <span class="price">13</span>
+                                    <span class="aui-margin-l-15">满电：</span>
+                                    <span class="price">13</span>
+                                </h4>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <ul class="aui-padded-15 aui-row" style="width:100%;">
+                        <li class="aui-col-xs-6 aui-padded-15" style="box-shadow: 1px 0px 0px #c0c0c0;">
+                            <div style="width: 5rem;margin:0 auto;line-height:1.5rem;">
+                                <span><i class="iconfonts icon-weixiu-copy tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>安装电池</span>
+                            </div>
+                        </li>
+                        <li class="aui-col-xs-6 aui-padded-15">
+                            <div style="width: 5rem;margin:0 auto;line-height:1.5rem;">
+                                <img src="images/dhdd_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-5">导航到店
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- 有数据真实div -->
+        <ul class="aui-list aui-list-noborder" style="border-radius: 1rem;position:relative;" v-else>
+            <div class="closeFrames aui-pull-right" @click="close_shopInfo">
+                <i class="aui-iconfont aui-icon-close icon-close"></i>
+            </div>
+            <div style="width: 100%;">
+                <img src="images/azyy-logo_03.png" style="width: 2.5rem;margin: 0 auto;">
+            </div>
+            <div class="aui-row aui-padded-t-15 aui-padded-l-15 aui-padded-r-15">
+                <h2 class="aui-text-center" style="width: 100%;">
+                    <span v-text="selectShopInfo.name"></span>
+                    <br>
+                    <span class="aui-font-size-14">
+                    天牛电池授权店 (<span v-text="selectShopInfo.no"></span>)</span>
+                </h2>
+            </div>
+            <div id="half-demo"></div>
+            <div class="aui-text-center aui-padded-5 aui-font-size-12" style="background: #7ec32f;color: #fff;" v-if="selectShopInfo.isActive===1">
+                <span>活动内容：安装预约赠送<span v-text="selectShopInfo.pinstall"></span>天牛币，</span>
+                <span>换电预约赠送<span v-text="selectShopInfo.preplace"></span>天牛币，</span>
+                <span>退电预约赠送<span v-text="selectShopInfo.rent"></span>天牛币</span>
+            </div>
+            <li class="aui-list-item aui-margin-t-10" style="border-top: 1px solid #ddd;height:100px;overflow-y: auto;">
+                <div>
+                    <ul style="display: flex;overflow-y: auto;">
+                        <li class="aui-padded-5" style="flex: 1;width: 6rem;" v-for="item in selectShopInfo.img">
+                            <img :src="item.url?item.url:'../assets/image/load-img.png'" width="100">
+                        </li>
+                    </ul>
+                    <ul class="aui-padded-10 aui-row" v-if="selectShopInfo.img.length<1">
+                        <li class="aui-col-xs-6 aui-padded-5">
+                            <img src="../assets/image/load-img.png" width="100">
+                        </li>
+                        <li class="aui-col-xs-6 aui-padded-5">
+                            <img src="../assets/image/load-img.png" width="100">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">店铺位置</div>
+                    <div class="aui-list-item-right aui-padded-t-15 aui-padded-b-15">
+                        <span v-text="selectShopInfo.shopsAddress"></span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="callus(selectShopInfo.contactcellphone)">
+                    <div class="aui-list-item-title">联系电话</div>
+                    <div class="aui-list-item-right aui-text-right aui-padded-t-15 aui-padded-b-15">
+                        <span v-text="selectShopInfo.contactcellphone">0371-6666</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">店铺介绍</div>
+                    <div class="aui-list-item-right aui-padded-t-15 aui-padded-b-15">
+                        <span v-text="selectShopInfo.comprofile?selectShopInfo.comprofile:'暂无介绍'">本店从事电池销售</span>
+                    </div>
+                </div>
+            </li>
+            <!-- 电池列表 -->
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <ul class="aui-padded-t-5 aui-row" style="width:100%;overflow:hidden;height:120px;overflow-y:auto;">
+                        <li class="aui-margin-l-15" v-for="item in selectShopInfo.battery" style="width:100%;overflow:hidden;">
+                            <div class="aui-pull-left">
+                                <img src="images/dc_02.png" style="width: 2.5rem; margin: 10px 3px;">
+                            </div>
+                            <div class="aui-pull-left aui-margin-l-5" style="line-height:3rem;">
+                                <h4 class="aui-text-center">
+                                    <b v-text="item.name">6020锂电</b>
+                                    <span class="aui-margin-l-15">库存：</span>
+                                    <span class="price" v-text="item.installablenum">13</span>
+                                    <span class="aui-margin-l-15">满电：</span>
+                                    <span class="price" v-text="item.fullpowernum">13</span>
+                                </h4>
+                            </div>
+                        </li>
+                        <li class="aui-margin-l-15" v-if="selectShopInfo.battery.length<1" style="width:100%;overflow:hidden;">
+                            <h4 class="aui-text-center" style="line-height:120px;">
+
+                            	<span>暂无电池</span>
+
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="aui-list-item-inner">
+                    <ul class="aui-padded-t-15 aui-padded-b-15 aui-row" style="width:100%;">
+                        <li class="aui-col-xs-6 aui-padded-t-15 aui-padded-b-15" style="box-shadow: 1px 0px 0px #c0c0c0;">
+                            <div style="text-align:center; line-height:1.5rem;">
+                                <div class="grey" tapmode v-if="selectShopInfo.isdeposit==0">
+                                    <span class="grey">
+                                <i class="iconfonts icon-weixiu-copy tngreen grey" style="font-size: 1.5rem;vertical-align: middle;"></i>未缴押金</span>
+                                </div>
+                                <!-- 逾期状态 -->
+                                <div class="grey" style="text-align:center; line-height:1.5rem;" v-if="selectShopInfo.isoverdue==1">
+                                    <div>
+                                        <span><i class="iconfonts icon-weixiu-copy tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>请续租后使用</span>
+                                    </div>
+                                </div>
+                                <div class="grey" style="text-align:center; line-height:1.5rem;" v-if="selectShopInfo.iscanappoint==0">
+                                    <div tapmode v-if="selectShopInfo.isreplace==1">
+                                        <span><i class="iconfonts icon-weixiu-copy tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>电池充电中</span>
+                                    </div>
+                                    <div class="grey" style="text-align:center; line-height:1.5rem;" v-if="selectShopInfo.isinstall==1">
+                                        <span><i class="iconfonts icon-weixiu-copy tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>新电池库存不足</span>
+                                    </div>
+                                </div>
+                                <div v-if="selectShopInfo.iscanappoint==1">
+                                    <!-- 满电更换 -->
+                                    <div tapmode @click="battery_bespeakBtn('isreplace1')" v-if="selectShopInfo.isreplace==1">
+                                        <span><i class="iconfonts icon-weixiu-copy tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>更换满电电池</span>
+                                    </div>
+                                    <!-- 预约安装 -->
+                                    <div tapmode @click="battery_bespeakBtn('isinstall1')" v-if="selectShopInfo.isinstall==1">
+                                        <span><i class="iconfonts icon-weixiu-copy tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>安装电池</span>
+                                    </div>
+                                    <!-- 已有预约 -->
+                                    <!--  <div tapmode v-if="ShopAndServicedata.bespeak">
+                                    <span class="aui-pull-left">
+                                        <img src="images/cxinstallbst_01.png" class="img-gray" style="width: 1.5rem;" class="aui-margin-r-5">
+                                    </span>
+                                    <span class="gray">已有预约</span>
+                                </div> -->
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-col-xs-6 aui-padded-t-15 aui-padded-b-15" @click="waymap_NavigationBtn">
+                            <div style="text-align: center; line-height:1.5rem;" class="">
+                                <span><i class="iconfonts icon-daohang2 tngreen" style="font-size: 1.5rem;vertical-align: middle;"></i>导航到店</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/shops_infos_frm.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.raty.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    setTimeout(function() {
+        $.fn.raty.defaults.path = 'images';
+        $('#half-demo').raty({
+            half: true,
+            targetType: 'number',
+            numberMax: 5,
+            score: Number(vm.selectShopInfo.score)/2,
+            readonly:true
+
+        });
+    }, 2000);
+
+});
+</script>

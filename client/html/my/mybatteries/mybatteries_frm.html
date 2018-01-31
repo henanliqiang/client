@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的电池</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/mybatteries.css">
+</head>
+
+<body id="mybatteries-frm" v-cloak>
+    <div class="bg">
+        <img src="images/dc_02.png">
+    </div>
+    <!-- 正常使用 -->
+    <div class="aui-content">
+        <div class="aui-text-center tngreen">
+            <span v-text="ShopAndServicedata.batteryname">6020锂电</span>
+            <span v-text="ShopAndServicedata.groupnum">1</span>组
+        </div>
+        <!-- 已经逾期 -->
+        <div class="aui-text-center aui-padded-t-15 aui-padded-b-15" v-if="ShopAndServicedata.isoverdue === 1">租期已逾期，请先续租或补交滞纳金后再选择退租
+        </div>
+        <div class="aui-margin-15 aui-padded-t-15 aui-padded-b-15">
+            <ul class="aui-padded-15" style="background: #fff;border-radius: 0.5rem;">
+                <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                    <div class="aui-pull-left grey">起租时间</div>
+                    <div class="aui-pull-right black">
+                        <span v-text="ShopAndServicedata.begindate">2017-12-1</span>
+                    </div>
+                </li>
+                <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                    <div class="aui-pull-left grey">换电次数</div>
+                    <div class="aui-pull-right black">
+                        <span v-text="ShopAndServicedata.reTime">198</span> 次
+                    </div>
+                </li>
+                <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                    <div class="aui-pull-left grey">当前租期</div>
+                    <div class="aui-pull-right black clearfix">
+                        至 <span v-text="ShopAndServicedata.duedate">2017-12-1</span>
+                        <span class="aui-btn aui-btn-danger" v-if="ShopAndServicedata.isoverdue === 1">已逾期</span>
+                    </div>
+                </li>
+                <template v-if="ShopAndServicedata.isoverdue === 1">
+                    <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                        <div class="aui-pull-left grey">逾期天数</div>
+                        <div class="aui-pull-right black"><span v-text="ShopAndServicedata.overDay">198</span>天</div>
+                    </li>
+                    <li class="clearfix aui-font-size-14 text-height aui-margin-5">
+                        <div class="aui-pull-left grey">滞纳金</div>
+                        <div class="aui-pull-right black">￥ <span v-text="ShopAndServicedata.unpaidlatefee">198</span> (￥ <span v-text="(ShopAndServicedata.rent?ShopAndServicedata.rent:'12')">12.00</span> /天)</div>
+                    </li>
+                </template>
+            </ul>
+        </div>
+        <div style="margin-top:2rem;" v-if="ShopAndServicedata.isoverdue === 1">
+            <div class="aui-content-padded">
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="insertRenewBtn()">
+                    <span class="aui-pull-left">•</span>
+                    立即续租
+                    <span class="aui-pull-right">•</span>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:2rem;">
+            <div class="aui-content-padded">
+            <!-- 逾期不能退组 -->
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm aui-btn-disable" v-if="ShopAndServicedata.isoverdue === 1">
+                    <span class="aui-pull-left">•</span>我要退租<span class="aui-pull-right">•</span>
+                </div>
+
+                <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="insrentBtn" v-else>
+                    <span class="aui-pull-left">•</span>我要退租<span class="aui-pull-right">•</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/mybatteries.js"></script>

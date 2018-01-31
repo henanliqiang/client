@@ -1,0 +1,24 @@
+.aui-list{
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+}
+.aui-list .aui-list-item{
+    background-image: none;
+    border:none;
+    padding-left: 0;
+}
+.aui-media-list-item-inner{
+    margin-left:1rem;
+    margin-right:1rem;
+}
+.xx{
+    border-bottom: 1px dashed #ccc;
+}
+.border-l-r{
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.aui-list .aui-list-item-inner{
+    padding-right: 0;
+}

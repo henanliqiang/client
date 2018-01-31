@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/rechargetianniu.css">
+    <style>
+    .info {
+        background: rgba(255, 112, 16, .80);
+        box-shadow: 0px 5px 6px #ffd2ba;
+        color: #fff;
+        font-size: 14px;
+        height: 40px;
+        line-height: 42px;
+        text-align: center;
+    }
+    .aui-list .rechargetianniu{
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border: 0.1rem solid #adadad;
+    }
+    .aui-list .brown{
+      color: #ffffff;
+      background: rgba(255, 112, 16, .80);
+    }
+    </style>
+</head>
+
+<body id="rechargetn">
+    <div class="aui-content" style="padding-bottom:3rem;">
+        <!-- 已经逾期 -->
+        <div class="info " v-show="selectAppointInfo.isoverdue==1">
+            <span>您的租期即将到期，请尽快续租</span>
+        </div>
+        <ul class="aui-list aui-list-noborder">
+            <li class="aui-list-item brown" v-if="tnactiveDetails.number==1">
+              充值天牛币{{tnactiveDetails.pas.oneStageA}}-{{tnactiveDetails.pas.oneStageB}}赠送{{tnactiveDetails.pas.oneGiveMuch}}&nbsp;&nbsp;
+              充值天牛币{{tnactiveDetails.pas.twoStageA}}-{{tnactiveDetails.pas.twoStageB}}赠送{{tnactiveDetails.pas.twoGiveMuch}}&nbsp;&nbsp;
+              充值天牛币{{tnactiveDetails.pas.threeStageA}}-{{tnactiveDetails.pas.threeStageB}}赠送{{tnactiveDetails.pas.threeGiveMuch}}&nbsp;&nbsp;
+              充值天牛币{{tnactiveDetails.pas.fourStage}}赠送{{tnactiveDetails.pas.fourGiveMuch}}
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">当前天牛币余额</div>
+                    <div class="aui-list-item-right">
+                        <span class="corange" v-text="balanceintegrals.integral" style="color:#000000;font-size:15px;">100</span>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-b-10">
+                <div class="aui-list-item-inner aui-padded-t-10 aui-padded-b-10">
+                    <div class="aui-list-item-title">充值天牛币</div>
+                    <div class="aui-list-item-right">
+                        <input class="aui-input rechargetianniu" v-model="money" type="number" name="" value="1000" min="1000" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" onfocus="if(this.value!=''){this.value=''}" onblur="if(this.value=='' || this.value<1000){this.value=1000;};" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}" placeholder="输入充值天牛币">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-margin-t-15">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">选择支付方式</div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('0')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/zfb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">支付宝</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="0" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('1')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/wx_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">微信</span>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="1" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner" @click="paymodeBtn('2')">
+                    <div class="aui-list-item-title">
+                        <img src="../../assets/image/qb_03.png" style="width: 1.5rem;" class="aui-pull-left aui-margin-r-10">
+                        <span style="line-height: 1.5rem;">钱包支付</span> (余额 ￥ {{balancewallets.wallet}})
+                    </div>
+                    <div class="aui-list-item-right">
+                        <input type="radio" class="aui-radio" name="paymode" value="2" v-model="paymode">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item aui-text-left aui-padded-l-15" tapmode style="width: auto;">
+            金额：<span class="price">￥{{money/100}}</span>
+        </div>
+        <div class="aui-bar-tab-item" tapmode style="width: 6rem;background: #7ec32f; color: #fff;" onclick="saveBtn()">立即支付</div>
+    </footer>
+</body>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/rechargetianniu.js"></script>
+
+</html>

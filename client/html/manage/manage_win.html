@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>电池管理</title>
+    <link rel="stylesheet" type="text/css"  href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css"  href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css"  href="css/manage.css">
+</head>
+<body>
+<header class="aui-bar aui-bar-nav" id="aui-header">
+    <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left"></span>返回
+    </a>
+    <div class="aui-title">电池管理</div>
+</header>
+<section class="aui-content aui-padded-15">
+    <div class="aui-title aui-padded-l-15 aui-margin-b-10">• 电池</div>
+    <ul class="aui-list aui-margin-t-15  aui-media-list aui-padded-15">
+        <li class="aui-list-item aui-list-item-middle" style="border-bottom: 1px solid #ccc;">
+            <div class="aui-media-list-item-inner xx">
+                <div class="aui-list-item-media" style="width: 3rem;">
+                    <img src="images/dc_03.png" class="aui-img-round aui-list-img-sm">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-14">天能“6020”型锂电池（组）</div>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width: 50%;">满电电池数：5</div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text aui-pull-right">
+                        <div class="aui-list-item-title aui-font-size-14">电池总数：5/12</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner xx">
+                <div class="aui-list-item-media" style="width: 3rem;">
+                    <img src="images/dc_03.png" class="aui-img-round aui-list-img-sm">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-14">天能“6020”型锂电池（组）</div>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width: 50%;">满电电池数：5</div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text aui-pull-right">
+                        <div class="aui-list-item-title aui-font-size-14">电池总数：5/12</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="aui-content-padded">
+        <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm">
+            <span class="aui-pull-left">•</span>修改满电电池数量<span class="aui-pull-right">•</span>
+        </div>
+    </div>
+    <div class="aui-title aui-padded-l-15 aui-margin-b-10 aui-margin-t-15">• 增/减配货</div>
+    <ul class="aui-list aui-margin-t-15 aui-row">
+        <li class="aui-list-item aui-col-xs-4 aui-margin-t-15 aui-margin-b-15">
+            <div class="aui-text-center" style="width: 100%;line-height: 2rem;">增加配货</div>
+        </li>
+        <li class="aui-list-item aui-col-xs-4 aui-margin-t-15 aui-margin-b-15 aui-text-center">
+            <div class="aui-text-center border-l-r" style="width: 100%;line-height: 2rem;">减少配货</div>
+        </li>
+        <li class="aui-list-item aui-col-xs-4 aui-margin-t-15 aui-margin-b-15 aui-text-right">
+            <div class="aui-text-center" style="width: 100%;line-height: 2rem;">订单记录</div>
+        </li>
+    </ul>
+    <div class="aui-title aui-padded-l-15 aui-margin-b-10 aui-margin-t-15">• 客服电话</div>
+    <ul class="aui-list aui-margin-t-15 aui-padded-l-15">
+        <li class="aui-list-item aui-padded-r-15 aui-list-item-arrow">
+            <div class="aui-list-item-label-icon">
+                <i class="aui-iconfont aui-icon-phone"></i>
+            </div>
+            <div class="aui-list-item-inner">
+                400 8526 5688
+                <div class="aui-list-item-right aui-margin-r-15">资讯、补货</div>
+            </div>
+        </li>
+    </ul>
+</section>
+</body>
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script>
+    apiready = function() {
+        // 实现沉浸式效果
+        $api.fixStatusBar($api.dom("header"));
+    }
+</script>

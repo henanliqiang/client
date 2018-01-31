@@ -1,0 +1,22 @@
+#left{
+    height:93.6%;
+    left:0;
+    bottom:0;
+}
+#right {
+    position: fixed;
+    height:100%;
+    right:0;
+    bottom:0;
+}
+.active{
+    color:#7ec32f;
+    background:#f5f5f5;
+}
+.aui-list{
+    font-size:0.7rem;
+}
+.item-text{
+    line-height:4rem;
+    text-align: center;
+}

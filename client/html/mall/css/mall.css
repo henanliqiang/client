@@ -1,0 +1,77 @@
+.aui-slide-node img {
+    width: 100%;
+    height: 20rem;
+}
+
+.bg-dark {
+    background: #333333 !important;
+}
+
+.block-item {
+    width: 44%;
+    height: 13.5rem;
+    background: #fff;
+    margin-left: 4%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/*搜索框*/
+.aui-bar-nav .aui-title {
+    left: 2rem;
+    right: 2rem;
+}
+
+.aui-searchbar {
+    background: none;
+}
+
+.aui-searchbar-input {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    border: 1px solid #fff;
+}
+
+.aui-input,
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 1.4rem;
+    line-height: normal;
+    color: #fff;
+    font-size: 0.55rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+::-webkit-input-placeholder {
+    color: #fff !important;
+
+}
+
+.aui-btn-danger {
+    background-color: #ff7010 !important;
+    left: 37%;
+    width: 26%;
+}

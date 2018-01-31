@@ -1,0 +1,13 @@
+.bg img{
+    width:100%;
+}
+.border{
+    border-radius: 0.5rem;
+    border:1px solid #7ec32f;
+}
+.hidden{
+    display: none;
+}
+.text-height{
+    line-height:1.5rem;
+}

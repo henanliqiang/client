@@ -1,0 +1,49 @@
+.block-logo{
+    padding:0.8rem 0;
+    width:5rem;
+    height:5rem;
+    margin:0 auto;
+    background: #fff;
+    border-radius:1rem;
+}
+.block-logo img{
+    width:4rem;
+}
+.block-item{
+    background: #fff;
+    border-radius:1rem;
+}
+.block-title{
+    width:6rem;
+    line-height:2.2rem;
+    font-size:0.8rem;
+}
+.aui-list{
+    margin:0 1rem;
+    font-size:0.55rem;
+    background-image:none;
+    background-color:#fff;
+    border:none;
+}
+.aui-list .aui-list-item{
+    background-image:none;
+    padding-left:0;
+    border:none;
+}
+.aui-list-item-inner{
+    border:0.05rem solid #7ec32f;
+    background:#fff;
+    overflow:hidden;
+}
+.aui-list .aui-list-item-label-icon{
+    padding:0.3rem 0;
+    color:#5b5b5b;
+    border-right:1px dotted #7ec32f;
+}
+.aui-iconfont{
+    font-size:1.4rem;
+}
+.aui-btn-primary{
+    background: #fff;
+    color:#7ec32f;
+}

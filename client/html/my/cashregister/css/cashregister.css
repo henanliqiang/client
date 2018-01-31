@@ -1,0 +1,13 @@
+.aui-list{
+    background-color:#f5f5f5;
+}
+.aui-list .aui-list-item{
+    background-image:none;
+    background-color:#fff;
+}
+.aui-list .aui-list-item-right{
+    max-width:70%;
+}
+.aui-list .aui-list-item-text{
+    line-height:1.5rem;
+}

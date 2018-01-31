@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的电池</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/havebatteries.css">
+</head>
+
+<body>
+    <div class="bg">
+        <img src="images/dc_02.png">
+    </div>
+    <div class="aui-content" id="battesucess-frm">
+        <div class="aui-text-center tngreen">
+            <span v-if="batteryIsstats == 'isinstall1'">安装电池预约成功</span>
+            <span v-if="batteryIsstats == 'isreplace1'">更换电池预约成功</span>
+            <span v-if="batteryIsstats == 'isrenew1'">续租成功</span>
+            <span v-if="batteryIsstats == 'isrent1'">退还电池预约成功</span>
+        </div>
+        <div class="aui-text-center aui-padded-t-15 aui-padded-b-15">
+
+            <span v-if="batteryIsstats == 'isinstall1'">请在预约时间内到达指定门店安装</span>
+            <span v-if="batteryIsstats == 'isreplace1'">请在预约时间内到达指定门店更换</span>
+            <span v-if="batteryIsstats == 'isrenew1'"><!-- 续租成功 --></span>
+            <span v-if="batteryIsstats == 'isrent1'">请在约定时间内到达指定门店退还</span>
+        </div>
+        <!-- <div class=" aui-margin-15">
+            <img src="images/map_03.png" style="display: block;margin: 0 auto;">
+        </div> -->
+        <div style="margin-top:2rem;">
+            <div class="aui-content-padded">
+                <p>
+                    <div class="aui-btn aui-btn-primary aui-btn-block aui-btn-sm" @click="jumpindexMap()">确 定</div>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../../assets/js/api.js"></script>
+<script type="text/javascript" src="../../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../../assets/js/common.js"></script>
+<script type="text/javascript" src="../../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/battesucess.js"></script>

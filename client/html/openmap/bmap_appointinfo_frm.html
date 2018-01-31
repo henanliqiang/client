@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>状态栏</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/openmap.css">
+    <style type="text/css">
+    body {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+    }
+
+    .info {
+        /*background: rgba(255, 112, 16, .80);*/
+        box-shadow: 0px 5px 6px #d6d6d6;
+        color: #fff;
+        font-size: 0.7rem;
+        height: 7rem;
+        width: 92%;
+        border-radius: 6px;
+        margin: 0 auto;
+        /*line-height: 42px;*/
+        text-align: center;
+        position: relative;
+        z-index: 998;
+    }
+
+    .aui-list .aui-list-item {
+        padding-left: 0;
+    }
+
+    .aui-list .aui-list-item-inner {
+        padding-right: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="aui-ellipsis-1 info aui-hide" id="appointinfo-frm" v-cloak :class="{'aui-show':ShopAndServicedata.bespeak!=''}">
+        <ul class="aui-list aui-padded-10" style="background-image: none;">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title clearfix">
+                        <img src="images/azyy-logo_03.png" class="aui-pull-left" style="width: 1.5rem;" />
+                        <div class="aui-pull-left aui-margin-l-5" style="line-height: 1.5rem;">
+                            <span v-if="ShopAndServicedata.bespeak.type==0">电池安装预约</span>
+                            <span v-if="ShopAndServicedata.bespeak.type==1">满电电池更换预约</span>
+                            <span v-if="ShopAndServicedata.bespeak.type==2">电池退租预约</span>
+                        </div>
+                    </div>
+                    <div class="aui-list-item-right">
+                        <img src="images/sl_07.png" class="aui-pull-left" style="width: 1.5rem;" />
+                        <div class="aui-pull-left aui-margin-l-5" style="line-height: 1.5rem;">
+                            <span v-if="ShopAndServicedata.bespeak.state==0 && MinTimesover==false">
+                                <span v-text="afterMinTimes">4小时28分</span> 后失效
+                            </span>
+                            <span class="price" v-else>
+                                <!-- 0：预约中 2：过期 3：已取消 4：型号不符 5：电池报损处理中 6：电池已损坏", -->
+                                <span v-if="ShopAndServicedata.bespeak.state==2">预约已过期</span>
+                                <span v-if="ShopAndServicedata.bespeak.state==3">已取消</span>
+                                <span v-if="ShopAndServicedata.bespeak.state==4">型号不符</span>
+                                <span v-if="ShopAndServicedata.bespeak.state==5">电池报损处理中</span>
+                                <span v-if="ShopAndServicedata.bespeak.state==6" style="color:red">电池已损坏</span>
+                                <span v-if="ShopAndServicedata.bespeak.state==7">电池未损坏</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item" style="background-image:none; ">
+                <div class="aui-list-item-inner">
+                    <ul class="aui-row aui-padded-t-10 aui-padded-b-15" style="width:100%;">
+                        <li class="aui-pull-left aui-text-left aui-font-size-14 aui-padded-r-15" style="box-shadow: 1px 0px 0px #c0c0c0;line-height: 1.5rem;width:78%;" @click="jumpAppointinfo">
+                            <div class="aui-text-overflow">
+                                <span v-text="ShopAndServicedata.bespeak.name">电动车服务店</span>
+                                <span>（</span>
+                                <span v-text="ShopAndServicedata.bespeak.no">Z0038</span>
+                                <span>）</span>
+                            </div>
+                            <div class="aui-text-overflow grey" v-text="shopsAddress">电池地址</div>
+                        </li>
+                        <li class="aui-pull-right aui-padded-10" style="width: 20%;" @click="waymap_NavigationBtn">
+                            <img src="images/dhdd_03.png" style="width: 2rem;margin-left:0.3rem;display: block;" class="aui-pull-left aui-margin-r-5">
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/bmap_appoint_info.js"></script>

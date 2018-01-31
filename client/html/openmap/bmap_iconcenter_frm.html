@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>地图图标</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/openmap.css">
+    <style type="text/css">
+    body {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+    }
+    /*地图覆盖图标*/
+
+    .bmap-center-icon {
+        display: block;
+        background: transparent url('../../image/map/mycenter@2x.png') 0 0 no-repeat;
+        background-size: 50px 50px;
+        height: 50px;
+        width: 50px;
+        position: relative;
+        z-index: 998;
+    }
+    .bmap-loading-icon {
+        background: transparent url('../../image/map/f5loadMap@2x.png') 0 0 no-repeat;
+        background-size: 50px 50px;
+		margin-top: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="aui-ellipsis-1 info" id="info-frm">
+        <!-- 当前定位 -->
+        <span class="bmap-center-icon" @click="setMapGpsstEvent"></span>
+        <!-- 重新刷新加载地图 -->
+        <span class="bmap-center-icon bmap-loading-icon" @click="setf5loadEvent"></span>
+        <!-- sos -->
+        <!-- <span class="bmap-center-icon bmap-sospg-icon" @click="setSOSpgEvent"></span> -->
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="../assets/js/api.js"></script>
+<script type="text/javascript" src="../assets/js/zepto.min.js"></script>
+<script type="text/javascript" src="../assets/js/common.js"></script>
+<script type="text/javascript" src="../assets/js/vue.min.js"></script>
+<script type="text/javascript" src="js/bmap_iconcenter_frm.js"></script>
